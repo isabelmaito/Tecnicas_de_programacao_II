@@ -114,6 +114,10 @@ public class ContaCorrente {
                ValidaSaldo (Saldo);
     }
     
+    public String getTabela(){
+        return this.tabela;
+    }
+    
     public String dadosSQLValues(){
         String dadosContas;
         dadosContas = "'"
@@ -125,6 +129,8 @@ public class ContaCorrente {
         return dadosContas;
     }
     
-    
+    public String pesquisaSQLValues() {
+        return "NUM_AGE, NUM_CC, ID_CLI, SALDO";
+    }
 }
 

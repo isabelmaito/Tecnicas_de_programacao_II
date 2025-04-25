@@ -4,7 +4,7 @@
  */
 package extratobancariobackend;
 
-import View.Menu;
+import View.TelaMenu;
 
 /**
  *
@@ -16,7 +16,7 @@ public class ExtratoBancarioBackEnd {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Menu menu_tela = new Menu();
+        TelaMenu menu_tela = new TelaMenu();
         menu_tela.setVisible(true);
     }
     

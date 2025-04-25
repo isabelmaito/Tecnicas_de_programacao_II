@@ -214,6 +214,76 @@ public class connectDAO {
         return lista;
     }
     
+    public List<Cliente> consultaRegistroClienteBD() {
+        con = connectDB();
+        List<Cliente> clientes = new ArrayList<>();
+        
+        Statement stmt;
+        try{
+            stmt = con.createStatement();
+            //cria a string com a sentença SQL para excluir registro
+            String sql = "SELECT * FROM CLIENTES";
+            
+            try{
+                //Executar a setença de delete7
+                ResultSet dados = stmt.executeQuery(sql);
+                JOptionPane.showMessageDialog(null, "Select executado com sucesso");
+                int i=0;
+                while (dados.next()) {
+                    if (i==0) 
+                    {
+                        i++;
+                        Cliente cliente = new Cliente(
+                            "ID_CLI",
+                            "NOME_CLI",
+                            "ENDE_CLI",
+                            "NUME_CLI",
+                            "COMPL_CLI",
+                            "BAIR_CLI",
+                            "CIDA_CLI", 
+                            "UF_CLI", 
+                            "CEP_CLI", 
+                            "FONE_CLI", 
+                            "CPF_CLI", 
+                            "DATA_NASC", 
+                            "CNPJ_CLI",
+                            true
+                        );
+                        clientes.add(cliente);                        
+                    }
+                    Cliente cliente = new Cliente(
+                        dados.getString("ID_CLI"),
+                        dados.getString("NOME_CLI"),
+                        dados.getString("ENDE_CLI"),
+                        dados.getString("NUME_CLI"),
+                        dados.getString("COMPL_CLI"),
+                        dados.getString("BAIR_CLI"),
+                        dados.getString("CIDA_CLI"),
+                        dados.getString("UF_CLI"),
+                        dados.getString("CEP_CLI"),
+                        dados.getString("FONE_CLI"),
+                        dados.getString("CPF_CLI"),
+                        dados.getString("DATA_NASC"),
+                        dados.getString("CNPJ_CLI"),
+                        true
+                    );
+                    clientes.add(cliente);
+                }
+                con.close();
+                return clientes;
+            } catch (SQLException error) {
+                JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => "+error.getMessage());
+                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Estado => "+error.getSQLState());
+                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Código => "+error.getErrorCode());
+                con.close();
+            }
+                        
+        } catch (SQLException erro) {
+            Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, erro);
+        
+        }
+        return null;
+    }
 }
 
 

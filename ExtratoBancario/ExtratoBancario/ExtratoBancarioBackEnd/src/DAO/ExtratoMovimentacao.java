@@ -234,4 +234,8 @@ public class ExtratoMovimentacao {
                         
         return dadosExtratos;
     }
+    
+    public String pesquisaSQLValues() {
+        return "NUM_AGE, NUM_CC, DATA_MOV, NUM_DOCTO, DEBITO_CREDITO, ID_HIS, COMPL_HIS, VALOR, SALDO";
+    }
 }
