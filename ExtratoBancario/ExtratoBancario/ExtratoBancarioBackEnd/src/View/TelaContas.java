@@ -285,7 +285,7 @@ public class TelaContas extends javax.swing.JFrame {
             this.AgenciaConta.setText(conta_tela.getNum_agencia());
             this.ContaConta.setText(conta_tela.getNum_conta());
             this.IDConta.setText(conta_tela.getID_cliente());
-            this.SaldoConta.setText(conta_tela.getSaldo());
+            this.SaldoConta.setText(conta_tela.getSaldo().toString());
             
         }
         
