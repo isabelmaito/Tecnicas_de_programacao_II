@@ -1,6 +1,9 @@
 package DAO;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -129,8 +132,34 @@ public class ContaCorrente {
         return dadosContas;
     }
     
+    public String alterarDadosSQLValues() {
+        String dadosContas;
+        dadosContas = "NUM_AGE='"
+                + this.getNum_agencia() + "',NUM_CC='"
+                + this.getNum_conta() + "',ID_CLI='"
+                + this.getID_cliente() + "',SALDO='"
+                + this.getSaldo() + "'";
+            
+        return dadosContas;
+    }
+    
+    public void importaSQLValues (List<String> dadosSQL) {
+        try {
+            this.setID_cliente(dadosSQL.get(0));
+            this.setNum_agencia(dadosSQL.get(1));
+            this.setNum_conta(dadosSQL.get(2));
+            this.setSaldo(Float.valueOf(dadosSQL.get(3)));
+            
+        } catch (Exception ex) {
+            
+            Logger.getLogger(ContaCorrente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    };
+    
     public String pesquisaSQLValues() {
         return "NUM_AGE, NUM_CC, ID_CLI, SALDO";
     }
+    
+
 }
 
