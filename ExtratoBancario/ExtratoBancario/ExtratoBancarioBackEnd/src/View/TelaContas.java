@@ -6,6 +6,7 @@ package View;
 
 import DAO.ContaCorrente;
 import DAO.connectDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -224,7 +225,7 @@ public class TelaContas extends javax.swing.JFrame {
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
         System.out.println(operacaoAtivaGlobal);
-        String operacaoExcluir
+        String operacaoExcluir;
         String operacao = "Incluir";
         if(operacaoAtivaGlobal.equals(operacao)){        
             try{
@@ -257,7 +258,7 @@ public class TelaContas extends javax.swing.JFrame {
 
             connectDAO DaoConta = new connectDAO();
                 DaoConta.connectDB();
-                DaoConta.alteraRegistroJFBD("CONTACORRENTE", conta_tela.alterarDadosSQLValues(), "ID_CLI='"+conta_tela.getIDConta()+"'");
+                DaoConta.alteraRegistroJFBD("CONTACORRENTE", conta_tela.alterarDadosSQLValues(), "ID_CLI='"+conta_tela.getID_cliente()+"'");
             }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
              
@@ -274,11 +275,13 @@ public class TelaContas extends javax.swing.JFrame {
             System.out.println("pesquisar para alterar");
             connectDAO DaoConta = new connectDAO();
             
-            conta_tela = DaoConta.pesquisaContaJFBD(
+            List<String> dadosSQL = DaoConta.pesquisaRegistroJFBD(
                     this.conta_tela.getTabela(),
                     this.conta_tela.pesquisaSQLValues(),
                     "ID_CLI='"+this.IDConta.getText()+"'"
             );
+            
+            conta_tela.importaSQLValues(dadosSQL);
             
             System.out.println("retornou, não deu erro silencioso");
             
@@ -287,8 +290,21 @@ public class TelaContas extends javax.swing.JFrame {
             this.IDConta.setText(conta_tela.getID_cliente());
             this.SaldoConta.setText(conta_tela.getSaldo().toString());
             
-        }
-        
+            idTitle.setVisible(false); //Label Id conta
+            IDConta.setVisible(false); //Field Id conta
+            AgenciaConta.setVisible(true);
+            ContaConta.setVisible(true);
+            SaldoConta.setVisible(true);
+            
+            if(operacaoAtivaGlobal.equals(operacaoExcluir)) {
+                ButtonCadastrar.setText("Excluir");
+                operacaoAtivaGlobal = "Exclusão";
+            } else {
+                ButtonCadastrar.setText("Alterar");
+                operacaoAtivaGlobal = "Alteração";
+            }
+            
+        }        
         
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
 

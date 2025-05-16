@@ -1,5 +1,10 @@
 package DAO;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -25,14 +30,14 @@ public class Cliente {
     private String CEP;    
     private String Telefone;    
     private String CPF;
-    private String Data_nascimento;
+    private Date Data_nascimento;
     private String CNPJ; 
     private boolean Status;
 
     public Cliente() {
     }
 
-    public Cliente(String ID_cliente, String Nome, String CPF, String Endereco, String Numero, String Complemento, String Bairro, String Cidade, String UF, String CEP, String Data_nascimento, String Telefone, String CNPJ, boolean Status) {
+    public Cliente(String ID_cliente, String Nome, String CPF, String Endereco, String Numero, String Complemento, String Bairro, String Cidade, String UF, String CEP, Date Data_nascimento, String Telefone, String CNPJ, boolean Status) {
         if (!ValidaCliente(ID_cliente, Nome, CPF, Endereco, Numero, Complemento, Bairro, Cidade, UF, CEP, Data_nascimento, Telefone, CNPJ, Status)){
             System.out.println("Erro");
         }
@@ -181,11 +186,11 @@ public class Cliente {
         }
     }
 
-    public String getData_nascimento() {
+    public Date getData_nascimento() {
         return Data_nascimento;
     }
 
-    public void setData_nascimento(String Data_nascimento) throws Exception{
+    public void setData_nascimento(Date Data_nascimento) throws Exception{
         if (ValidaData_nascimento(Data_nascimento)){
         this.Data_nascimento = Data_nascimento;
         }else{
@@ -295,10 +300,8 @@ public class Cliente {
                CEP.length() == 8;
     }
     
-    private boolean ValidaData_nascimento(String Data_nascimento){
-        return Data_nascimento != null &&
-               !Data_nascimento.isBlank() &&
-               !Data_nascimento.isEmpty();
+    private boolean ValidaData_nascimento(Date Data_nascimento){
+        return Data_nascimento != null;
     }
     
     private boolean ValidaTelefone(String Telefone){
@@ -319,7 +322,7 @@ public class Cliente {
         return Status != null;
     }
     
-    private boolean ValidaCliente(String ID_cliente, String Nome, String CPF, String Endereco, String Numero, String Complemento, String Bairro, String Cidade, String UF, String CEP, String Data_nascimento, String Telefone, String CNPJ, boolean Status){
+    private boolean ValidaCliente(String ID_cliente, String Nome, String CPF, String Endereco, String Numero, String Complemento, String Bairro, String Cidade, String UF, String CEP, Date Data_nascimento, String Telefone, String CNPJ, boolean Status){
         return ValidaIDCliente(ID_cliente) &&
                ValidaNome(Nome) &&
                ValidaCPF(CPF) &&
@@ -358,6 +361,10 @@ public class Cliente {
     
     public String alterarDadosSQLValues(){
         String dadosClientes;
+        
+        SimpleDateFormat dateFormaterToDb = new SimpleDateFormat("dd/MM/yyyy");
+        String dataNascimentoFormatada = dateFormaterToDb.format(this.getData_nascimento());
+        
         dadosClientes = "NOME_CLI='"
                 + this.getNome() + "',ENDE_CLI='"
                 + this.getEndereco() + "',NUME_CLI='"
@@ -369,11 +376,36 @@ public class Cliente {
                 + this.getCEP() + "',FONE_CLI='"
                 + this.getTelefone() + "',CPF_CLI='"
                 + this.getCPF() + "',DATA_NASC='"                    
-                + this.getData_nascimento() + "',CNPJ_CLI='"
+                + dataNascimentoFormatada + "',CNPJ_CLI='"
                 + this.getCNPJ() + "'";   
         
         return dadosClientes;
     }
+    
+    public void importaSQLValues(List<String> dadosSQL) {
+        try {
+            this.setID_cliente(dadosSQL.get(0));
+            this.setNome(dadosSQL.get(1));
+            this.setEndereco(dadosSQL.get(2));
+            this.setNumero(dadosSQL.get(3));
+            this.setComplemento(dadosSQL.get(4));
+            this.setBairro(dadosSQL.get(5));
+            this.setCidade(dadosSQL.get(6));
+            this.setUF(dadosSQL.get(7));
+            this.setCEP(dadosSQL.get(8));
+            this.setTelefone(dadosSQL.get(9));
+            this.setCPF(dadosSQL.get(10));
+            
+            String dataSQL = dadosSQL.get(11);
+            SimpleDateFormat dateFormaterFromDB = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataFormatada = dateFormaterFromDB.parse(dataSQL);
+            this.setData_nascimento(dataFormatada);
+            
+            this.setCNPJ(dadosSQL.get(12));
+        } catch (Exception ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    };
     
     public String pesquisaSQLValues() {
         return "ID_CLI, NOME_CLI, ENDE_CLI, NUME_CLI, COMPL_CLI, BAIR_CLI, CIDA_CLI, UF_CLI, CEP_CLI, FONE_CLI, CPF_CLI, DATA_NASC, CNPJ_CLI";
