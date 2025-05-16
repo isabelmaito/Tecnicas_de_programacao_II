@@ -6,7 +6,10 @@ package View;
 
 import DAO.Cliente;
 import DAO.connectDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
  *
@@ -474,7 +477,12 @@ public class TelaClientes extends javax.swing.JFrame {
                 cliente_tela.setCEP(CEPCliente.getText());
                 cliente_tela.setCidade(CidadeCliente.getText());
                 cliente_tela.setUF(UFCliente.getSelectedItem().toString());
-                cliente_tela.setData_nascimento(Data_nascimentoCliente.getText());
+                
+                
+                SimpleDateFormat dateFormaterToObject = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataNascimentoFormatada = dateFormaterToObject.parse(Data_nascimentoCliente.getText());
+                cliente_tela.setData_nascimento(dataNascimentoFormatada);
+                
                 cliente_tela.setCPF(CPFCliente.getText());
                 cliente_tela.setCNPJ(CNPJCliente.getText());
                 cliente_tela.setStatus(Status.isSelected());
@@ -506,7 +514,9 @@ public class TelaClientes extends javax.swing.JFrame {
                 cliente_tela.setCEP(CEPCliente.getText());
                 cliente_tela.setCidade(CidadeCliente.getText());
                 cliente_tela.setUF(UFCliente.getSelectedItem().toString());
-                cliente_tela.setData_nascimento(Data_nascimentoCliente.getText());
+                SimpleDateFormat dateFormaterToObject = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataNascimentoFormatada = dateFormaterToObject.parse(Data_nascimentoCliente.getText());
+                cliente_tela.setData_nascimento(dataNascimentoFormatada);
                 cliente_tela.setCPF(CPFCliente.getText());
                 cliente_tela.setCNPJ(CNPJCliente.getText());
                 cliente_tela.setStatus(Status.isSelected());
@@ -531,11 +541,13 @@ public class TelaClientes extends javax.swing.JFrame {
             System.out.println("pesquisar para alterar");
             connectDAO DaoCliente = new connectDAO();
             
-            cliente_tela = DaoCliente.pesquisaClienteJFBD(
+            List<String> dadosSQL = DaoCliente.pesquisaRegistroJFBD(
                     this.cliente_tela.getTabela(),
                     this.cliente_tela.pesquisaSQLValues(),
                     "ID_CLI='"+this.IDCliente.getText()+"'"
             );
+            
+            cliente_tela.importaSQLValues(dadosSQL);
             
             System.out.println("retornou, não deu erro silencioso");
             
@@ -548,7 +560,11 @@ public class TelaClientes extends javax.swing.JFrame {
             this.CEPCliente.setText(cliente_tela.getCEP());
             this.CidadeCliente.setText(cliente_tela.getCidade());
             this.UFCliente.setSelectedItem(cliente_tela.getUF());
-            this.Data_nascimentoCliente.setText(cliente_tela.getData_nascimento());
+            
+            SimpleDateFormat dateFormaterToField = new SimpleDateFormat("dd/MM/yyyy");
+            String dataNascimentoFormatada = dateFormaterToField.format(cliente_tela.getData_nascimento());
+            this.Data_nascimentoCliente.setText(dataNascimentoFormatada);
+            
             this.CPFCliente.setText(cliente_tela.getCPF());
             this.CNPJCliente.setText(cliente_tela.getCNPJ());
             this.TelefoneCliente.setText(cliente_tela.getTelefone());
@@ -591,9 +607,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 ButtonCadastrar.setText("Alterar");
                 operacaoAtivaGlobal = "Alteração";
             }
-        }
-        
-        
+        }           
                 
                 // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
