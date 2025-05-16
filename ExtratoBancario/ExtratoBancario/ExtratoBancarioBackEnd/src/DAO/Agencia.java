@@ -1,7 +1,9 @@
 package DAO;
 
 import javax.swing.JOptionPane;
-
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -254,6 +256,10 @@ public class Agencia {
                ValidaTelefone(Telefone);
     }
     
+    public String getTabela(){
+        return this.tabela;
+    }
+    
     public String dadosSQLValues(){
         String dadosAgencias;
         dadosAgencias = "'"
@@ -269,5 +275,38 @@ public class Agencia {
                 + this.getTelefone() + "'";
         
         return dadosAgencias;
+    }
+    
+    public String alterarDadosSQLValues() {
+        String dadosAgencias;
+        dadosAgencias = "NUM_AGE='"
+                + this.getNum_Agencia() +"',NOME_AGE='"
+                + this.getNome() +"',ENDE_AGE='"
+                + this.getEndereco() +"',NUME_AGE='"
+                + this.getNumero() +"',COMPL_AGE='"
+                + this.getComplemento() +"',BAIR_AGE='"
+                + this.getBairro() +"',CIDA_AGE='"
+                + this.getCidade() +"',UF_AGE='"
+                + this.getUF() +"',CEP_AGE='"
+                + this.getCEP() +"',FONE_AGE='"
+                + this.getTelefone() + "'";
+        
+        return dadosAgencias;
+    }
+    
+    public void importaSQLValues (List<String> dadosSQL){
+        try {
+            this.setNum_Agencia(dadosSQL.get(0));
+            this.setNome(dadosSQL.get(1));
+            this.setEndereco(dadosSQL.get(2));
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Agencia.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    };
+    
+    public String pesquisaSQLValues() {
+        return "NUM_AGE, NOME_AGE, ENDE_AGE, NUME_AGE, COMPL_AGE, BAIR_AGE, CIDA_AGE, UF_AGE, CEP_AGE, FONE_AGE";
     }
 } 
