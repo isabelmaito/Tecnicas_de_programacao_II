@@ -116,13 +116,10 @@ public class connectDAO {
         }
     }
     
-    public Cliente pesquisaClienteJFBD(String tabela, String select, String pesquisaID){
-        Cliente clientesReturn = new Cliente();
-        String tabelaSGBD = "CLIENTES";
-        if (tabela.toLowerCase().equals(tabelaSGBD.toLowerCase())){
+    public List<String> pesquisaRegistroJFBD(String tabela, String select, String pesquisaID){
             //Fazer a pesquisa e retornar a tbaela como resultado
             con = connectDB(); //Executa o método que conecta no BD e retorna
-            
+            List<String> listaDados = new ArrayList<>();
             Statement stmt;
             try {
                 stmt = con.createStatement();
@@ -130,160 +127,34 @@ public class connectDAO {
                 String sql = "SELECT "+select+" FROM " +tabela
                         + " WHERE "+pesquisaID;
                 System.out.println(sql);
-                //JOptionPane.showMessageDialog(null, "String de Select: "+sql)
                 try {
-                    //Executar a sentença de insert
-                    //stmt = con.prepareStatement(sql);
-                    //JOptionPane.showMessageDialog(null,"Vai executar a query com: "+sql);
                     ResultSet dados;
                     dados = stmt.executeQuery(sql);
-                    if (dados.next() == false){
-                        
+                    
+                    if (!dados.next()) {
                         JOptionPane.showMessageDialog(null, "Nenhum registro foi "+ "encontrado para essa pesquisa");
                     }
-                    else
-                    {
-                        SimpleDateFormat dateFormaterFromDB = new SimpleDateFormat("yyyy-MM-dd");
-                        SimpleDateFormat dateFormaterToField = new SimpleDateFormat("dd/MM/yyyy");
-                        
-                        try {
-                            clientesReturn.setID_cliente(dados.getString(1));                       
-                            clientesReturn.setNome(dados.getString(2));
-                            clientesReturn.setEndereco(dados.getString(3));
-                            clientesReturn.setNumero(dados.getString(4));
-                            clientesReturn.setComplemento(dados.getString(5));
-                            clientesReturn.setBairro(dados.getString(6));
-                            clientesReturn.setCidade(dados.getString(7));
-                            clientesReturn.setUF(dados.getString(8));
-                            clientesReturn.setCEP(dados.getString(9));
-                            clientesReturn.setTelefone(dados.getString(10));
-                            clientesReturn.setCPF(dados.getString(11));
-                            
-                            Date dateFromDB = dateFormaterFromDB.parse(dados.getString(12));
-                            String formatedDate = dateFormaterToField.format(dateFromDB);
-                            clientesReturn.setData_nascimento(formatedDate);
-                            
-                            clientesReturn.setCNPJ(dados.getString(13));
-                        } catch (Exception ex) {
-                            Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                    con.close();
                     
-                    return clientesReturn; //lista;
+                    int columnCount = dados.getMetaData().getColumnCount();
+                    
+                    for (int index = 1; index<= columnCount; index++) {
+                        listaDados.add(dados.getString(index));
+                    }
+
                 }catch (SQLException erro){
                     JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => "+erro.getMessage());
                     JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Estado => "+erro.getSQLState());
                     JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Código => "+erro.getErrorCode());
+                } finally {
+                    con.close();
                 }
-                con.close();
             }catch (SQLException ex){
               Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        //TODO: repensar a lógica deste retorno
-        return new Cliente();
+        return listaDados;
     }
 
     
-    public List<String> consultaRegistroJFBD(String tabela, String campos, String condicao) {
-        con = connectDB();
-        Statement stmt;
-        ResultSet rs;
-        List<String> lista = new ArrayList<>();
-        try {
-            stmt = con.createStatement();
-            
-            String sql = "SELECT "+campos+" FROM dbo."+tabela+" WHERE "+condicao;
-            JOptionPane.showMessageDialog(null, "String de select: "+sql);
-            
-            try {
-                rs = stmt.executeQuery(sql);
-                while (rs.next()) {
-                    lista.add(rs.getString(1));
-                }
-            } catch (SQLException erro) {
-                JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => "+erro.getMessage());
-                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Estado => "+erro.getSQLState());
-                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Código => "+erro.getErrorCode());
-            }
-            con.close();
-        } catch (SQLException erro) {
-            Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, erro);
-        }
-        return lista;
-    }
-    
-    public List<Cliente> consultaRegistroClienteBD() {
-        con = connectDB();
-        List<Cliente> clientes = new ArrayList<>();
-        
-        Statement stmt;
-        try{
-            stmt = con.createStatement();
-            //cria a string com a sentença SQL para excluir registro
-            String sql = "SELECT * FROM CLIENTES";
-            
-            try{
-                //Executar a setença de delete7
-                ResultSet dados = stmt.executeQuery(sql);
-                JOptionPane.showMessageDialog(null, "Select executado com sucesso");
-                int i=0;
-                while (dados.next()) {
-                    if (i==0) 
-                    {
-                        i++;
-                        Cliente cliente = new Cliente(
-                            "ID_CLI",
-                            "NOME_CLI",
-                            "ENDE_CLI",
-                            "NUME_CLI",
-                            "COMPL_CLI",
-                            "BAIR_CLI",
-                            "CIDA_CLI", 
-                            "UF_CLI", 
-                            "CEP_CLI", 
-                            "FONE_CLI", 
-                            "CPF_CLI", 
-                            "DATA_NASC", 
-                            "CNPJ_CLI",
-                            true
-                        );
-                        clientes.add(cliente);                        
-                    }
-                    Cliente cliente = new Cliente(
-                        dados.getString("ID_CLI"),
-                        dados.getString("NOME_CLI"),
-                        dados.getString("ENDE_CLI"),
-                        dados.getString("NUME_CLI"),
-                        dados.getString("COMPL_CLI"),
-                        dados.getString("BAIR_CLI"),
-                        dados.getString("CIDA_CLI"),
-                        dados.getString("UF_CLI"),
-                        dados.getString("CEP_CLI"),
-                        dados.getString("FONE_CLI"),
-                        dados.getString("CPF_CLI"),
-                        dados.getString("DATA_NASC"),
-                        dados.getString("CNPJ_CLI"),
-                        true
-                    );
-                    clientes.add(cliente);
-                }
-                con.close();
-                return clientes;
-            } catch (SQLException error) {
-                JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => "+error.getMessage());
-                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Estado => "+error.getSQLState());
-                JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Código => "+error.getErrorCode());
-                con.close();
-            }
-                        
-        } catch (SQLException erro) {
-            Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, erro);
-        
-        }
-        return null;
-    }
 }
 
 
