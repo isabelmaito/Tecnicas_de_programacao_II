@@ -6,6 +6,7 @@ package View;
 
 import DAO.Agencia;
 import DAO.connectDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,76 @@ public class TelaAgencias extends javax.swing.JFrame {
         initComponents();
     }
 
+    String operacaoAtivaGlobal = "Nenhum";
+    public TelaAgencias(String operacaoAtiva){
+        initComponents ();
+        
+        operacaoAtivaGlobal = operacaoAtiva;
+        
+        String operacao = "Incluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            agenciaTitle.setVisible(true);
+            AgenciaAgencia.setVisible(true);
+            NomeAgencia.setVisible(true);
+            EndAgencia.setVisible(true);
+            NumAgencia.setVisible(true);
+            CompAgencia.setVisible(true);
+            BairroAgencia.setVisible(true);
+            CEPAgencia.setVisible(true);
+            CidadeAgencia.setVisible(true);
+            UFAgencia.setVisible(true);
+            TelefoneAgencia.setVisible(true);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(true);                    
+        }
+        
+        operacao = "Alterar";
+        
+        if(operacaoAtiva.equals(operacao)){
+            agenciaTitle.setVisible(true);
+            AgenciaAgencia.setVisible(true);
+            NomeAgencia.setVisible(false);
+            EndAgencia.setVisible(false);
+            NumAgencia.setVisible(false);
+            CompAgencia.setVisible(false);
+            BairroAgencia.setVisible(false);
+            CEPAgencia.setVisible(false);
+            CidadeAgencia.setVisible(false);
+            UFAgencia.setVisible(false);
+            TelefoneAgencia.setVisible(false);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(false);   
+            
+            ButtonCadastrar.setText("Pesquisar");
+        }       
+        
+        operacao = "Excluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            agenciaTitle.setVisible(true);
+            AgenciaAgencia.setVisible(true);
+            NomeAgencia.setVisible(false);
+            EndAgencia.setVisible(false);
+            NumAgencia.setVisible(false);
+            CompAgencia.setVisible(false);
+            BairroAgencia.setVisible(false);
+            CEPAgencia.setVisible(false);
+            CidadeAgencia.setVisible(false);
+            UFAgencia.setVisible(false);
+            TelefoneAgencia.setVisible(false);  
+            
+            ButtonCadastrar.setVisible(false);
+            ButtonDetalhes.setVisible(false);   
+            
+            ButtonCadastrar.setText("Excluir");
+        }
+        
+    }
+    
+    
     Agencia agencia_tela = new Agencia();
     
     /**
@@ -32,25 +103,25 @@ public class TelaAgencias extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        nomeTitle = new javax.swing.JLabel();
         NomeAgencia = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        endTitle = new javax.swing.JLabel();
         EndAgencia = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        numTitle = new javax.swing.JLabel();
         NumAgencia = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        compTitle = new javax.swing.JLabel();
         CompAgencia = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        bairroTitle = new javax.swing.JLabel();
         BairroAgencia = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        cepTitle = new javax.swing.JLabel();
         CEPAgencia = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        cidadeTitle = new javax.swing.JLabel();
         CidadeAgencia = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        ufTitle = new javax.swing.JLabel();
         UFAgencia = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
+        agenciaTitle = new javax.swing.JLabel();
         AgenciaAgencia = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        telTitle = new javax.swing.JLabel();
         TelefoneAgencia = new javax.swing.JTextField();
         ButtonCadastrar = new javax.swing.JButton();
         ButtonDetalhes = new javax.swing.JButton();
@@ -58,7 +129,7 @@ public class TelaAgencias extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setText("Nome");
+        nomeTitle.setText("Nome");
 
         NomeAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +137,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Endereço:");
+        endTitle.setText("Endereço:");
 
         EndAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +145,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Número:");
+        numTitle.setText("Número:");
 
         NumAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +153,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Complemento:");
+        compTitle.setText("Complemento:");
 
         CompAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +161,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Bairro:");
+        bairroTitle.setText("Bairro:");
 
         BairroAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +169,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("CEP");
+        cepTitle.setText("CEP");
 
         CEPAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +177,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Cidade");
+        cidadeTitle.setText("Cidade");
 
         CidadeAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +185,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("UF");
+        ufTitle.setText("UF");
 
         UFAgencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         UFAgencia.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +194,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Agência");
+        agenciaTitle.setText("Agência");
 
         AgenciaAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +202,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Telefone");
+        telTitle.setText("Telefone");
 
         TelefoneAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,11 +239,11 @@ public class TelaAgencias extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(bairroTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BairroAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(cepTitle)
                         .addGap(13, 13, 13)
                         .addComponent(CEPAgencia))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -182,35 +253,35 @@ public class TelaAgencias extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Limpar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(ufTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
+                        .addComponent(cidadeTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CidadeAgencia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
+                        .addComponent(telTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TelefoneAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(numTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NumAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(compTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CompAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(endTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(EndAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(nomeTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NomeAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
+                        .addComponent(agenciaTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AgenciaAgencia)))
                 .addContainerGap())
@@ -221,32 +292,32 @@ public class TelaAgencias extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NomeAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel11)
+                    .addComponent(nomeTitle)
+                    .addComponent(agenciaTitle)
                     .addComponent(AgenciaAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(endTitle)
                     .addComponent(EndAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(numTitle)
                     .addComponent(NumAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
+                    .addComponent(compTitle)
                     .addComponent(CompAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(bairroTitle)
                     .addComponent(BairroAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(cepTitle)
                     .addComponent(CEPAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(ufTitle)
                     .addComponent(UFAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
+                    .addComponent(cidadeTitle)
                     .addComponent(CidadeAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
+                    .addComponent(telTitle)
                     .addComponent(TelefoneAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -300,7 +371,11 @@ public class TelaAgencias extends javax.swing.JFrame {
     }//GEN-LAST:event_TelefoneAgenciaActionPerformed
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
-        try {
+        System.out.println(operacaoAtivaGlobal);
+        String operacaoExcluir;
+        String operacao = "Incluir";
+        if(operacaoAtivaGlobal.equals(operacao)){
+            try {
             agencia_tela.setNum_Agencia(AgenciaAgencia.getText());
             agencia_tela.setNome(NomeAgencia.getText());
             agencia_tela.setEndereco(EndAgencia.getText());
@@ -323,6 +398,84 @@ public class TelaAgencias extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Agencia Cadastrada");
         this.setVisible(false);
         this.dispose();
+        }
+        
+        operacao = "Alteração";
+        if(operacaoAtivaGlobal.equals(operacao)){
+            try {
+            agencia_tela.setNum_Agencia(AgenciaAgencia.getText());
+            agencia_tela.setNome(NomeAgencia.getText());
+            agencia_tela.setEndereco(EndAgencia.getText());
+            agencia_tela.setNumero(NumAgencia.getText());
+            agencia_tela.setComplemento(CompAgencia.getText());
+            agencia_tela.setBairro(BairroAgencia.getText());
+            agencia_tela.setCEP(CEPAgencia.getText());
+            agencia_tela.setCidade(CidadeAgencia.getText());
+            agencia_tela.setUF(UFAgencia.getSelectedItem().toString());
+            agencia_tela.setTelefone(TelefoneAgencia.getText());
+            
+            connectDAO DaoAgencia = new connectDAO();
+            DaoAgencia.connectDB();
+            DaoAgencia.insereRegistroJFBD("AGENCIAS", agencia_tela.dadosSQLValues());
+        } catch(Exception erro){
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "Agencia Cadastrada");
+        this.setVisible(false);
+        this.dispose();
+        }
+        
+        operacao = "Alterar";
+        operacaoExcluir = "Excluir";
+        if(operacaoAtivaGlobal.equals(operacao) || operacaoAtivaGlobal.equals(operacaoExcluir)){
+           System.out.println("pesquisar para alterar");
+           connectDAO DaoConta = new connectDAO();
+           
+           List<String> dadosSQL = DaoConta.pesquisaRegistroJFBD(
+                   this.agencia_tela.getTabela(),
+                   this.agencia_tela.pesquisaSQLValues(),
+                   "NUM_AGE='"+this.NumAgencia.getText()+"'"
+           );
+           
+           agencia_tela.importaSQLValues(dadosSQL);
+           
+           System.out.println("retornou, não deu erro silencioso");
+           
+           this.AgenciaAgencia.setText(agencia_tela.getNum_Agencia());
+           this.NomeAgencia.setText(agencia_tela.getNome());
+           this.EndAgencia.setText(agencia_tela.getEndereco());
+           this.NumAgencia.setText(agencia_tela.getNumero());
+           this.CompAgencia.setText(agencia_tela.getComplemento());
+           this.BairroAgencia.setText(agencia_tela.getBairro());
+           this.CEPAgencia.setText(agencia_tela.getCEP());
+           this.CidadeAgencia.setText(agencia_tela.getCidade());
+           this.UFAgencia.setSelectedItem(agencia_tela.getUF());
+           this.TelefoneAgencia.setText(agencia_tela.getTelefone());
+           
+           AgenciaAgencia.setVisible(false);
+           NomeAgencia.setVisible(false);
+           EndAgencia.setVisible(true);
+           NumAgencia.setVisible(true);
+           CompAgencia.setVisible(true);
+           BairroAgencia.setVisible(true);
+           CEPAgencia.setVisible(true);
+           CidadeAgencia.setVisible(true);
+           UFAgencia.setVisible(true);
+           TelefoneAgencia.setVisible(true);
+           
+           if(operacaoAtivaGlobal.equals(operacaoExcluir)){
+               ButtonCadastrar.setText("Excluir");
+               operacaoAtivaGlobal = "Exclusão";
+           } else {
+               ButtonCadastrar.setText("Alterar");
+               operacaoAtivaGlobal = "Alteração";
+           }
+           
+        }
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
 
@@ -395,15 +548,15 @@ public class TelaAgencias extends javax.swing.JFrame {
     private javax.swing.JTextField NumAgencia;
     private javax.swing.JTextField TelefoneAgencia;
     private javax.swing.JComboBox<String> UFAgencia;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel agenciaTitle;
+    private javax.swing.JLabel bairroTitle;
+    private javax.swing.JLabel cepTitle;
+    private javax.swing.JLabel cidadeTitle;
+    private javax.swing.JLabel compTitle;
+    private javax.swing.JLabel endTitle;
+    private javax.swing.JLabel nomeTitle;
+    private javax.swing.JLabel numTitle;
+    private javax.swing.JLabel telTitle;
+    private javax.swing.JLabel ufTitle;
     // End of variables declaration//GEN-END:variables
 }
