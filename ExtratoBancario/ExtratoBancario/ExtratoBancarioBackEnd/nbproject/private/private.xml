@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/View/TelaMenu.java</file>
-            <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/DAO/Cliente.java</file>
-            <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/DAO/connectDAO.java</file>
             <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/View/TelaContas.java</file>
+            <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/View/TelaAgencias.java</file>
             <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/DAO/ContaCorrente.java</file>
             <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/View/TelaClientes.java</file>
+            <file>file:/C:/Users/Alunos/Documents/Isabel/Técnicas_de_Programação_II/ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/src/DAO/Agencia.java</file>
         </group>
     </open-files>
 </project-private>
