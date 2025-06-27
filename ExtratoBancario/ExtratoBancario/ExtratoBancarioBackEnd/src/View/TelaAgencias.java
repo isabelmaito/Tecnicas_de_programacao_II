@@ -422,7 +422,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             return;
         }
         
-        JOptionPane.showMessageDialog(this, "Agencia Cadastrada");
+        JOptionPane.showMessageDialog(this, "Agencia Aletrada");
         this.setVisible(false);
         this.dispose();
         }

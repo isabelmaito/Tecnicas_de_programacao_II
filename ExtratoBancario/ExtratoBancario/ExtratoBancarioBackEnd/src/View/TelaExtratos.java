@@ -6,6 +6,7 @@ package View;
 
 import DAO.ExtratoMovimentacao;
 import DAO.connectDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -332,6 +333,7 @@ public class TelaExtratos extends javax.swing.JFrame {
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
         System.out.println(operacaoAtivaGlobal);
+        String operacaoExcluir;
         String operacao = "Incluir";
         if(operacaoAtivaGlobal.equals(operacao)){       
             try{
@@ -353,9 +355,66 @@ public class TelaExtratos extends javax.swing.JFrame {
                 return;
             }
 
-            JOptionPane.showMessageDialog(this, "Agencia Cadastrada");
+            JOptionPane.showMessageDialog(this, "Extrato Cadastrado");
             this.setVisible(false);
             this.dispose();
+            }
+        
+            operacao = "Alteração";
+            if(operacaoAtivaGlobal.equals(operacao)){
+            try {
+                extrato_tela.setNum_agencia(AgenciaExtrato.getText());
+                extrato_tela.setNum_conta(ContaExtrato.getText());
+                extrato_tela.setID_hist(Integer.valueOf(ID_histExtrato.getText()));
+                extrato_tela.setDocumento(DocExtrato.getText());
+                extrato_tela.setData_mov(DataExtrato.getText());
+                extrato_tela.setCredito_debito(Credito_debitoExtrato.getSelectedItem().toString().substring(0,1));
+                extrato_tela.setComplHist(ComplHistExtrato.getText());
+                extrato_tela.setValor(Integer.valueOf(ValorExtrato.getText()));
+                extrato_tela.setSaldo(Integer.valueOf(SaldoExtrato.getText()));
+                
+                connectDAO DaoExtrato = new connectDAO();
+                DaoExtrato.connectDB();
+                DaoExtrato.insereRegistroJFBD("MOVIMENTACAO", extrato_tela.dadosSQLValues());                
+            } catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+                return;
+            }
+            
+            JOptionPane.showMessageDialog(this, "Extrato Cadastrado");
+            this.setVisible(false);
+            this.dispose();
+            }
+
+            operacao = "Alterar";
+            operacaoExcluir = "Excluir";
+            if(operacaoAtivaGlobal.equals(operacao) || operacaoAtivaGlobal.equals(operacaoExcluir)){
+               System.out.println("pesquisar para alterar");
+               connectDAO DaoConta = new connectDAO();
+               
+               List<String> dadosSQL = DaoConta.pesquisaRegistroJFBD(
+                       this.extrato_tela.getTabela(),
+                       this.extrato_tela.pesquisaSQLValues(),
+                       "ID_HIS'="+this.ID_histExtrato.getText()+"'"
+               );
+               
+               extrato_tela.importaSQLValues(dadosSQL);
+               
+               this.AgenciaExtrato.setText(extrato_tela.getNum_agencia());
+               this.ContaExtrato.setText(extrato_tela.getNum_conta());
+               this.ID_histExtrato.setText(extrato_tela.getID_hist());
+               this.DocExtrato.setText(extrato_tela.getDocumento());
+               
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
             // TODO add your handling code here:
         }
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
