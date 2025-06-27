@@ -400,10 +400,13 @@ public class TelaExtratos extends javax.swing.JFrame {
                
                extrato_tela.importaSQLValues(dadosSQL);
                
+               System.out.println("retornou, não deu erro silencioso");
+               
                this.AgenciaExtrato.setText(extrato_tela.getNum_agencia());
                this.ContaExtrato.setText(extrato_tela.getNum_conta());
-               this.ID_histExtrato.setText(extrato_tela.getID_hist());
+               this.ID_histExtrato.setText(extrato_tela.getID_hist().toString());
                this.DocExtrato.setText(extrato_tela.getDocumento());
+               this
                
             
             
