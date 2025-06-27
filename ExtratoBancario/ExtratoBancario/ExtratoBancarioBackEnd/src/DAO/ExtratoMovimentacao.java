@@ -219,6 +219,10 @@ public class ExtratoMovimentacao {
                ValidaSaldo(Saldo);
     }
     
+    public String getTabela(){
+        return this.tabela;
+    }
+    
     public String dadosSQLValues(){
         String dadosExtratos;
         dadosExtratos = "'"
@@ -235,6 +239,31 @@ public class ExtratoMovimentacao {
         return dadosExtratos;
     }
     
+    public String dadosSQLValues(){
+        String dadosExtratos;
+        dadosExtratos = "NUM_AGE='"
+                + this.getNum_agencia() + "',NUM_CC='"
+                + this.getNum_conta() + "',DATA_MOV='"
+                + this.getData_mov() + "',NUM_DOCTO='"
+                + this.getDocumento() + "',DEBITO_CREDITO='"
+                + this.getCredito_debito() + "',ID_HIS='"
+                + this.getID_hist() + "',COMPL_HIS='"
+                + this.getComplHist() + "',VALOR='"
+                + this.getValor() + "',SALDO='"
+                + this.getSaldo() + "'";
+        
+        return dadosExtratos;
+    }
+
+    public void importaSQLValues (List<String> dadosSQL){
+        try{
+            
+        }
+                
+        
+        
+        
+    }
     public String pesquisaSQLValues() {
         return "NUM_AGE, NUM_CC, DATA_MOV, NUM_DOCTO, DEBITO_CREDITO, ID_HIS, COMPL_HIS, VALOR, SALDO";
     }
