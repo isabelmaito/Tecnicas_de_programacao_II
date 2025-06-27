@@ -406,7 +406,12 @@ public class TelaExtratos extends javax.swing.JFrame {
                this.ContaExtrato.setText(extrato_tela.getNum_conta());
                this.ID_histExtrato.setText(extrato_tela.getID_hist().toString());
                this.DocExtrato.setText(extrato_tela.getDocumento());
-               this
+               this.DataExtrato.setText(extrato_tela.getData_mov());
+               this.Credito_debitoExtrato.setSelectedItem(extrato_tela.getCredito_debito());
+               this.ComplHistExtrato.setText(extrato_tela.getComplHist());
+               
+               
+               
                
             
             
