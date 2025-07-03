@@ -1,6 +1,9 @@
 package DAO;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -72,6 +75,15 @@ public class Historico {
         String dadosHistoricos;
         dadosHistoricos = "'"
                 + this.getID_historico() + "','"
+                + this.getHistorico() + "'";
+        
+        return dadosHistoricos;
+    }
+    
+    public String alterarDadosSQLValues() {
+        String dadosHistoricos;
+        dadosHistoricos = "ID_HIS='"
+                + this.getID_historico() + "', DES_HIS='"
                 + this.getHistorico() + "'";
         
         return dadosHistoricos;
