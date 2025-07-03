@@ -97,7 +97,7 @@ public class TelaExtratos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        idConta = new javax.swing.JLabel();
         ContaExtrato = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         AgenciaExtrato = new javax.swing.JTextField();
@@ -121,7 +121,7 @@ public class TelaExtratos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setText("Conta");
+        idConta.setText("Conta");
 
         ContaExtrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +241,7 @@ public class TelaExtratos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addComponent(idConta)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ContaExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -280,7 +280,7 @@ public class TelaExtratos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ContaExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addComponent(idConta)
                     .addComponent(jLabel1)
                     .addComponent(AgenciaExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -410,20 +410,29 @@ public class TelaExtratos extends javax.swing.JFrame {
                this.Credito_debitoExtrato.setSelectedItem(extrato_tela.getCredito_debito());
                this.ComplHistExtrato.setText(extrato_tela.getComplHist());
                this.ValorExtrato.setText(extrato_tela.getValor().toString());
+               this.SaldoExtrato.setText(extrato_tela.getSaldo().toString());
                
+               idTitle.setVisible(false); 
+               ID_histExtrato.setVisible(false);
+               AgenciaExtrato.setVisible(true);
+               ContaExtrato.setVisible(true);
+               DocExtrato.setVisible(true);
+               DataExtrato.setVisible(true);
+               Credito_debitoExtrato.setVisible(true);
+               ComplHistExtrato.setVisible(true);
+               ValorExtrato.setVisible(true);
+               SaldoExtrato.setVisible(true);
                
+               if(operacaoAtivaGlobal.equals(operacaoExcluir)) {
+                   ButtonCadastrar.setText("Excluir");
+                    operacaoAtivaGlobal = "Exclusão";
+            } else {
+                ButtonCadastrar.setText("Alterar");
+                operacaoAtivaGlobal = "Alteração";
+            }
+                            
                
-               
-               
-            
-            
-
-            
-            
-            
-            
-            
-            
+                  
             
             // TODO add your handling code here:
         }
@@ -507,11 +516,11 @@ public class TelaExtratos extends javax.swing.JFrame {
     private javax.swing.JButton Limpar;
     private javax.swing.JTextField SaldoExtrato;
     private javax.swing.JTextField ValorExtrato;
+    private javax.swing.JLabel idConta;
     private javax.swing.JLabel idTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
