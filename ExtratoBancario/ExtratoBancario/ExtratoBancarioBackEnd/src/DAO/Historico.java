@@ -88,4 +88,19 @@ public class Historico {
         
         return dadosHistoricos;
     }
+    
+    public void importaSQLValues (List<String> dadosSQL) {
+        try {
+            this.setID_historico(dadosSQL.get(0));
+            this.setHistorico(dadosSQL.get(1));
+            
+        } catch (Exception ex) {
+            
+             Logger.getLogger(ContaCorrente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    };
+    
+    public String pesquisaSQLValues() {
+        return "ID_HIS, DES_HIS";
+    }
 }
