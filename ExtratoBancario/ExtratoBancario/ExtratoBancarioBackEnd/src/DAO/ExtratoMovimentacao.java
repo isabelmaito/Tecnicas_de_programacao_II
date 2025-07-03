@@ -1,6 +1,9 @@
 package DAO;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -239,7 +242,7 @@ public class ExtratoMovimentacao {
         return dadosExtratos;
     }
     
-    public String dadosSQLValues(){
+    public String alterarDadosSQLValues(){
         String dadosExtratos;
         dadosExtratos = "NUM_AGE='"
                 + this.getNum_agencia() + "',NUM_CC='"
@@ -257,7 +260,20 @@ public class ExtratoMovimentacao {
 
     public void importaSQLValues (List<String> dadosSQL){
         try{
+            this.setNum_agencia(dadosSQL.get(0));
+            this.setNum_conta(dadosSQL.get(1))
+            this.setID_hist(dadosSQL.get(2));
+            this.setDocumento(dadosSQL.get(3));	
+            this.setData_mov(dadosSQL.get(4));	
+            this.setCredito_debito(dadosSQL.get(5));	
+            this.setComplHist(dadosSQL.get(6));	
+            this.setValor(dadosSQL.get(7));	
+            this.setSaldo(dadosSQL.get(8));
             
+        } catch (Exception ex) {
+            
+            Logger.getLogger(ContaCorrente.class.getName()).log(Level.SEVERE, null, ex);
+
         }
                 
         
