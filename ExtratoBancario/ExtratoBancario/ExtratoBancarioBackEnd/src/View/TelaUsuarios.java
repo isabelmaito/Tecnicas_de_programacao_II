@@ -4,8 +4,9 @@
  */
 package View;
 
-import DAO.Usuario;
+import DAO.ContaCorrente;
 import DAO.connectDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +21,58 @@ public class TelaUsuarios extends javax.swing.JFrame {
     public TelaUsuarios() {
         initComponents();
     }
-
+    
+    String operacaoAtivaGlobal = "Nenhum";
+    public TelaUsuaris(String operacaoAtiva){
+        initComponents();
+        
+        operacaoAtivaGlobal = operacaoAtiva;
+        
+        String operacao = "Incluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDUsuario.setVisible(true);
+            Num_agenciaUsuario.setVisible(true);
+            SenhaUsuario.setVisible(true);
+            Num_contaUsuario.setVisible(true);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(true); 
+        }
+        
+        operacao = "Alterar";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDUsuario.setVisible(true);
+            Num_agenciaUsuario.setVisible(false);
+            SenhaUsuario.setVisible(false);
+            Num_contaUsuario.setVisible(false);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(false); 
+            
+            ButtonCadastrar.setText("Pesquisar");
+        }
+        
+        operacao = "Excluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDUsuario.setVisible(true);
+            Num_agenciaUsuario.setVisible(false);
+            SenhaUsuario.setVisible(false);
+            Num_contaUsuario.setVisible(false);
+            
+            ButtonCadastrar.setVisible(false);
+            ButtonDetalhes.setVisible(false); 
+            
+            ButtonCadastrar.setText("Excluir");
+            
+        }
+    }
+    
     Usuario usuario_tela = new Usuario();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +83,7 @@ public class TelaUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        idTitle = new javax.swing.JLabel();
         IDUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Num_agenciaUsuario = new javax.swing.JTextField();
@@ -41,10 +93,11 @@ public class TelaUsuarios extends javax.swing.JFrame {
         Limpar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         Num_contaUsuario = new javax.swing.JTextField();
+        ButtonDetalhes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setText("ID:");
+        idTitle.setText("ID:");
 
         IDUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,21 +143,30 @@ public class TelaUsuarios extends javax.swing.JFrame {
             }
         });
 
+        ButtonDetalhes.setText("Detalhes");
+        ButtonDetalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDetalhesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ButtonCadastrar)
-                        .addGap(130, 130, 130)
-                        .addComponent(Limpar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonDetalhes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(idTitle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(IDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -130,7 +192,7 @@ public class TelaUsuarios extends javax.swing.JFrame {
                         .addComponent(SenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(IDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
+                        .addComponent(idTitle)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -140,9 +202,10 @@ public class TelaUsuarios extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(Num_agenciaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Limpar)
-                    .addComponent(ButtonCadastrar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonCadastrar)
+                    .addComponent(ButtonDetalhes)
+                    .addComponent(Limpar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -162,23 +225,86 @@ public class TelaUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_SenhaUsuarioActionPerformed
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
-        try {
-            usuario_tela.setID_cliente(IDUsuario.getText());
-            usuario_tela.setNum_agencia(Num_agenciaUsuario.getText());
-            usuario_tela.setNum_conta(Num_contaUsuario.getText());
-            usuario_tela.setSenha(SenhaUsuario.getText());
-            
-            connectDAO DaoUsuario = new connectDAO();
-            DaoUsuario.connectDB();
-            DaoUsuario.insereRegistroJFBD("USUARIOS", usuario_tela.dadosSQLValues());
-        }catch(Exception erro){
-            JOptionPane.showMessageDialog(this, erro.getMessage());
-            return;
+        System.out.println(operacaoAtivaGlobal);
+        String operacaoExcluir;
+        String operacao = "Incluir";
+        if(operacaoAtivaGlobal.equals(operacao)){
+            try {
+                usuario_tela.setID_cliente(IDUsuario.getText());
+                usuario_tela.setNum_agencia(Num_agenciaUsuario.getText());
+                usuario_tela.setNum_conta(Num_contaUsuario.getText());
+                usuario_tela.setSenha(SenhaUsuario.getText());
+
+                connectDAO DaoUsuario = new connectDAO();
+                DaoUsuario.connectDB();
+                DaoUsuario.insereRegistroJFBD("USUARIOS", usuario_tela.dadosSQLValues());
+            }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
+            this.setVisible(false);
+            this.dispose();
+        }
+        
+        operacao = "Alteração";
+        if(operacaoAtivaGlobal.equals(operacao)){
+            try {
+                usuario_tela.setID_cliente(IDUsuario.getText());
+                usuario_tela.setNum_agencia(Num_agenciaUsuario.getText());
+                usuario_tela.setNum_conta(Num_contaUsuario.getText());
+                usuario_tela.setSenha(SenhaUsuario.getText());
+
+                connectDAO DaoUsuario = new connectDAO();
+                DaoUsuario.connectDB();
+                DaoUsuario.insereRegistroJFBD("USUARIOS", usuario_tela.alterarDadosSQLValues(), "ID='"+usuario_tela.getID_cliente()+"'");
+            }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+                
+            }
+
+            JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
+            this.setVisible(false);
+            this.dispose();
         }
 
-        JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
-        this.setVisible(false);
-        this.dispose();
+        operacao = "Alterar";
+        operacaoExcluir = "Excluir";
+        if (operacaoAtivaGlobal.equals(operacao) || operacaoAtivaGlobal.equals(operacaoExcluir)){
+            System.out.println("pesquisar para alterar");
+            connectDAO DaoConta = new connectDAO();
+            
+            List<String> dadosSQL = DaoConta.pesquisaRegistroJFBD(
+                    this.usuario_tela.getTabela(),
+                    this.usuario_tela.pesquisaSQLValues(),
+                    "ID='"+this.IDUsuario.getText()+"'"
+            );
+            
+            usuario_tela.importaSQLValues(dadosSQL);
+            
+            System.out.println("retornou, não deu erro silencioso");
+            
+            this.IDUsuario.setText(usuario_tela.getID_cliente());
+            this.Num_agenciaUsuario.setText(usuario_tela.getNum_agencia());
+            this.Num_contaUsuario.setText(usuario_tela.getNum_conta());
+            this.SenhaUsuario.setText(usuario_tela.getSenha());
+            
+            idTitle.setVisible(false);
+            IDUsuario.setVisible(false);
+            Num_agenciaUsuario.setVisible(true);
+            SenhaUsuario.setVisible(false);
+            Num_contaUsuario.setVisible(false);
+            
+            if(operacaoAtivaGlobal.equals(operacaoExcluir)) {
+                ButtonCadastrar.setText("Excluir");
+                operacaoAtivaGlobal = "Exclusão";
+            } else {
+                ButtonCadastrar.setText("Alterar");
+                operacaoAtivaGlobal = "Alteração";
+            }
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
 
@@ -193,6 +319,10 @@ public class TelaUsuarios extends javax.swing.JFrame {
     private void Num_contaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Num_contaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Num_contaUsuarioActionPerformed
+
+    private void ButtonDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDetalhesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonDetalhesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,14 +362,15 @@ public class TelaUsuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCadastrar;
+    private javax.swing.JButton ButtonDetalhes;
     private javax.swing.JTextField IDUsuario;
     private javax.swing.JButton Limpar;
     private javax.swing.JTextField Num_agenciaUsuario;
     private javax.swing.JTextField Num_contaUsuario;
     private javax.swing.JTextField SenhaUsuario;
+    private javax.swing.JLabel idTitle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
