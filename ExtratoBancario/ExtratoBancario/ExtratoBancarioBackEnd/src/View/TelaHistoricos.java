@@ -6,6 +6,7 @@ package View;
 
 import DAO.Historico;
 import DAO.connectDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,51 @@ public class TelaHistoricos extends javax.swing.JFrame {
     public TelaHistoricos() {
         initComponents();
     }
+    
+    String operacaoAtivaGlobal = "Nenhum";
+    public TelaHistoricos(String operacaoAtiva){
+        initComponents();
+        
+        operacaoAtivaGlobal = operacaoAtiva;
+        
+        String operacao = "Incluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDHistorico.setVisible(true);
+            HistoricoHistorico.setVisible(true);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(true);   
+        }
+        
+         operacao = "Alterar";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDHistorico.setVisible(false);
+            HistoricoHistorico.setVisible(true);
+            
+            ButtonCadastrar.setVisible(true);
+            ButtonDetalhes.setVisible(false); 
+            
+             ButtonCadastrar.setText("Pesquisar");            
+        }
+        
+        operacao = "Excluir";
+        
+        if(operacaoAtiva.equals(operacao)){
+            idTitle.setVisible(true);
+            IDHistorico.setVisible(false);
+            HistoricoHistorico.setVisible(true);
+            
+            ButtonCadastrar.setVisible(false);
+            ButtonDetalhes.setVisible(false); 
+            
+             ButtonCadastrar.setText("Excluir");  
+        }
+            
+    }
 
     Historico historico_tela = new Historico();
     
@@ -32,9 +78,9 @@ public class TelaHistoricos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        histTitle = new javax.swing.JLabel();
         HistoricoHistorico = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        idTitle = new javax.swing.JLabel();
         IDHistorico = new javax.swing.JTextField();
         ButtonCadastrar = new javax.swing.JButton();
         ButtonDetalhes = new javax.swing.JButton();
@@ -42,7 +88,7 @@ public class TelaHistoricos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setText("Historico");
+        histTitle.setText("Historico");
 
         HistoricoHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +96,7 @@ public class TelaHistoricos extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("ID");
+        idTitle.setText("ID");
 
         IDHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,9 +132,9 @@ public class TelaHistoricos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
+                    .addComponent(histTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(idTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(IDHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -105,10 +151,10 @@ public class TelaHistoricos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(idTitle)
                     .addComponent(IDHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(histTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HistoricoHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -131,9 +177,14 @@ public class TelaHistoricos extends javax.swing.JFrame {
     }//GEN-LAST:event_IDHistoricoActionPerformed
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
-        try{
+        System.out.println(operacaoAtivaGlobal);
+        String operacaoExcluir;
+        String operacao = "Incluir";
+        if(operacaoAtivaGlobal.equals(operacao)){ 
+            try{
             historico_tela.setID_historico(Integer.valueOf(IDHistorico.getText()));
             historico_tela.setHistorico(HistoricoHistorico.getText());
+            
             
             connectDAO DaoHist = new connectDAO();
             DaoHist.connectDB();
@@ -146,6 +197,60 @@ public class TelaHistoricos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Historico Cadastrado");
         this.setVisible(false);
         this.dispose();
+    }
+        
+    operacao = "Alteração";
+        if(operacaoAtivaGlobal.equals(operacao)){
+            
+        
+            try{
+            historico_tela.setID_historico(Integer.valueOf(IDHistorico.getText()));
+            historico_tela.setHistorico(HistoricoHistorico.getText());
+            
+            connectDAO DaoHist = new connectDAO();
+            DaoHist.connectDB();
+            DaoHist.insereRegistroJFBD("HISTORICOS", historico_tela.alterarDadosSQLValues(), "ID_HIS='"+historico_tela.getID_historico()+"'");
+        }catch(Exception erro){
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+            
+        }
+            JOptionPane.showMessageDialog(this, "Conta Alterada");
+            this.setVisible(false);
+            this.dispose();   
+        }    
+        
+        operacao = "Alterar";
+        operacaoExcluir = "Excluir";
+        if (operacaoAtivaGlobal.equals(operacao) || operacaoAtivaGlobal.equals(operacaoExcluir)){
+            System.out.println("pesquisar para alterar");
+            connectDAO DaoConta = new connectDAO();
+            
+            List<String> dadosSQL = DaoConta.pesquisaRegistroJFBD(
+                    this.historico_tela.getTabela(),
+                    this.historico_tela.pesquisaSQLValues(),
+                    "ID_HIS='"+this.IDHistorico.getText()+"'"
+            );
+            
+            historico_tela.importaSQLValues(dadosSQL);
+            
+            System.out.println("retornou, não deu erro silencioso");
+            
+            this.HistoricoHistorico.setText(historico_tela.getHistorico());
+            this.IDHistorico.setText(historico_tela.getID_historico());
+            
+            idTitle.setVisible(false);
+            IDHistorico.setVisible(true);
+            HistoricoHistorico.setVisible(true);
+            
+            if(operacaoAtivaGlobal.equals(operacaoExcluir)) {
+                ButtonCadastrar.setText("Excluir");
+                operacaoAtivaGlobal = "Exclusão";
+            } else {
+                ButtonCadastrar.setText("Alterar");
+                operacaoAtivaGlobal = "Alteração";
+            }
+            
+    }
             // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
 
@@ -201,7 +306,7 @@ public class TelaHistoricos extends javax.swing.JFrame {
     private javax.swing.JTextField HistoricoHistorico;
     private javax.swing.JTextField IDHistorico;
     private javax.swing.JButton Limpar;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel histTitle;
+    private javax.swing.JLabel idTitle;
     // End of variables declaration//GEN-END:variables
 }
