@@ -321,32 +321,37 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_clienteCriarTitleActionPerformed
 
     private void usuarioCriarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioCriarTitleActionPerformed
-        TelaUsuarios acesso_usuario = new TelaUsuarios();
+        String operacao = "Incluir";
+        TelaUsuarios acesso_usuario = new TelaUsuarios(operacao);
         acesso_usuario.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_usuarioCriarTitleActionPerformed
 
     private void contaCriarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaCriarTitleActionPerformed
         // TODO add your handling code here:
-        TelaContas acesso_conta = new TelaContas();
+        String operacao = "Incluir";
+        TelaContas acesso_conta = new TelaContas(operacao);
         acesso_conta.setVisible(true);
     }//GEN-LAST:event_contaCriarTitleActionPerformed
 
     private void agenCriarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenCriarTitleActionPerformed
         // TODO add your handling code here:
-        TelaAgencias acesso_agencia = new TelaAgencias();
+        String operacao = "Incluir";
+        TelaAgencias acesso_agencia = new TelaAgencias(operacao);
         acesso_agencia.setVisible(true);
     }//GEN-LAST:event_agenCriarTitleActionPerformed
 
     private void extratoCriarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoCriarTitleActionPerformed
         // TODO add your handling code here:
-        TelaExtratos acesso_extrato = new TelaExtratos();
+        String operacao = "Incluir";
+        TelaExtratos acesso_extrato = new TelaExtratos(operacao);
         acesso_extrato.setVisible(true);
     }//GEN-LAST:event_extratoCriarTitleActionPerformed
 
     private void histCriarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histCriarTitleActionPerformed
         // TODO add your handling code here:
-        TelaHistoricos acesso_historico = new TelaHistoricos();
+        String operacao = "Incluir";
+        TelaHistoricos acesso_historico = new TelaHistoricos(operacao);
         acesso_historico.setVisible(true);
     }//GEN-LAST:event_histCriarTitleActionPerformed
 
@@ -355,14 +360,12 @@ public class TelaMenu extends javax.swing.JFrame {
         String operacao = "Alterar";
         TelaClientes acesso_cliente = new TelaClientes(operacao);
         acesso_cliente.setVisible(true);
-        
     }//GEN-LAST:event_clienteEditarTitleActionPerformed
 
     private void clienteExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteExcluirTitleActionPerformed
         String operacao = "Excluir";
         TelaClientes acesso_cliente = new TelaClientes(operacao);
         acesso_cliente.setVisible(true);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_clienteExcluirTitleActionPerformed
 
@@ -372,10 +375,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void agenEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenEditarTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Alterar";
+        TelaAgencias acesso_cliente = new TelaAgencias(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_agenEditarTitleActionPerformed
 
     private void agenExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenExcluirTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Excluir";
+        TelaAgencias acesso_cliente = new TelaAgencias(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_agenExcluirTitleActionPerformed
 
     private void agenConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenConsultarTitleActionPerformed
@@ -384,10 +393,17 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void contaEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaEditarTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Alterar";
+        TelaContas acesso_cliente = new TelaContas(operacao);
+        acesso_cliente.setVisible(true);
+        
     }//GEN-LAST:event_contaEditarTitleActionPerformed
 
     private void contaExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaExcluirTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Excluir";
+        TelaContas acesso_cliente = new TelaContas(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_contaExcluirTitleActionPerformed
 
     private void contaConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaConsultarTitleActionPerformed
@@ -396,10 +412,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void extratoEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoEditarTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Alterar";
+        TelaExtratos acesso_cliente = new TelaExtratos(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_extratoEditarTitleActionPerformed
 
     private void extratoExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoExcluirTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Excluir";
+        TelaExtratos acesso_cliente = new TelaExtratos(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_extratoExcluirTitleActionPerformed
 
     private void extratoConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoConsultarTitleActionPerformed
@@ -408,10 +430,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void histEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histEditarTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Alterar";
+        TelaHistoricos acesso_cliente = new TelaHistoricos(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_histEditarTitleActionPerformed
 
     private void histExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histExcluirTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Excluir";
+        TelaHistoricos acesso_cliente = new TelaHistoricos(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_histExcluirTitleActionPerformed
 
     private void histConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histConsultarTitleActionPerformed
@@ -420,10 +448,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void usuarioEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEditarTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Alterar";
+        TelaUsuarios acesso_cliente = new TelaUsuarios(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_usuarioEditarTitleActionPerformed
 
     private void usuarioExcluirTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioExcluirTitleActionPerformed
         // TODO add your handling code here:
+        String operacao = "Excluir";
+        TelaUsuarios acesso_cliente = new TelaUsuarios(operacao);
+        acesso_cliente.setVisible(true);
     }//GEN-LAST:event_usuarioExcluirTitleActionPerformed
 
     private void usuarioConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioConsultarTitleActionPerformed
