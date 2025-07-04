@@ -30,6 +30,10 @@ public class Historico {
         this.Historico = Historico;
     }
 
+    public String getTabela() {
+        return tabela;
+    }
+
     public int getID_historico() {
         return ID_historico;
     }
@@ -91,7 +95,7 @@ public class Historico {
     
     public void importaSQLValues (List<String> dadosSQL) {
         try {
-            this.setID_historico(dadosSQL.get(0));
+            this.setID_historico(Integer.parseInt(dadosSQL.get(0)));
             this.setHistorico(dadosSQL.get(1));
             
         } catch (Exception ex) {

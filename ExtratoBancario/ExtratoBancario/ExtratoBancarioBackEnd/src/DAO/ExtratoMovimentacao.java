@@ -261,14 +261,14 @@ public class ExtratoMovimentacao {
     public void importaSQLValues (List<String> dadosSQL){
         try{
             this.setNum_agencia(dadosSQL.get(0));
-            this.setNum_conta(dadosSQL.get(1))
-            this.setID_hist(dadosSQL.get(2));
+            this.setNum_conta(dadosSQL.get(1));
+            this.setID_hist(Integer.parseInt(dadosSQL.get(2)));
             this.setDocumento(dadosSQL.get(3));	
             this.setData_mov(dadosSQL.get(4));	
             this.setCredito_debito(dadosSQL.get(5));	
             this.setComplHist(dadosSQL.get(6));	
-            this.setValor(dadosSQL.get(7));	
-            this.setSaldo(dadosSQL.get(8));
+            this.setValor(Integer.parseInt(dadosSQL.get(7)));	
+            this.setSaldo(Integer.parseInt(dadosSQL.get(8)));
             
         } catch (Exception ex) {
             
