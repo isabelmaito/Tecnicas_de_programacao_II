@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Alunos
  */
-public class Usuario {
+public class Usuario implements BaseDAO  {
     private String tabela = "usuarios";
     private String ID_cliente; 
     private String Senha;
@@ -119,6 +119,7 @@ public class Usuario {
                ValidaIDCliente(ID_cliente);
     }
     
+    @Override
     public String getTabela(){
         return this.tabela;
     }

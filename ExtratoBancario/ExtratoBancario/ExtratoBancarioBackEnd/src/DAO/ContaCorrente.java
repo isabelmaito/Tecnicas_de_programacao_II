@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Alunos
  */
-public class ContaCorrente {
+public class ContaCorrente implements BaseDAO  {
     private String tabela = "contacorrente";
     private String Num_conta;
     private String Num_agencia;
@@ -117,6 +117,8 @@ public class ContaCorrente {
                ValidaSaldo (Saldo);
     }
     
+    
+    @Override
     public String getTabela(){
         return this.tabela;
     }

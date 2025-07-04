@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Alunos
  */
-public class Historico {
+public class Historico implements BaseDAO  {
     private String tabela = "Historico";
     private Integer ID_historico;
     private String Historico;
@@ -30,6 +30,7 @@ public class Historico {
         this.Historico = Historico;
     }
 
+    @Override
     public String getTabela() {
         return tabela;
     }

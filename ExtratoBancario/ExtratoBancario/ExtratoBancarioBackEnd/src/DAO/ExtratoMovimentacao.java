@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Alunos
  */
-public class ExtratoMovimentacao {
+public class ExtratoMovimentacao implements BaseDAO  {
     private String tabela = "ExtratoMov";
     private String Num_conta;
     private String Num_agencia;
@@ -222,6 +222,7 @@ public class ExtratoMovimentacao {
                ValidaSaldo(Saldo);
     }
     
+    @Override
     public String getTabela(){
         return this.tabela;
     }

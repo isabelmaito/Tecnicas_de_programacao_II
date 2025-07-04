@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Alunos
  */
-public class Agencia {
+public class Agencia implements BaseDAO {
     private String tabela = "agencias";
     private String Num_Agencia;
     private String Nome;
@@ -256,7 +256,8 @@ public class Agencia {
                ValidaTelefone(Telefone);
     }
     
-    public String getTabela(){
+    @Override
+    public String getTabela() {
         return this.tabela;
     }
     

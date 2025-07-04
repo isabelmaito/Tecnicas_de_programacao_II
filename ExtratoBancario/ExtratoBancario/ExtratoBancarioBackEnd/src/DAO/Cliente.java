@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Alunos
  */
-public class Cliente {
+public class Cliente  implements BaseDAO {
     private String tabela = "clientes";
     private String ID_cliente;
     private String Nome;
@@ -233,6 +233,8 @@ public class Cliente {
         this.Status = Status;
     }
 
+    
+    @Override
     public String getTabela() {
         return tabela;
     }
