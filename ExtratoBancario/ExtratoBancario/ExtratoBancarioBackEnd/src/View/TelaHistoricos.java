@@ -209,7 +209,7 @@ public class TelaHistoricos extends javax.swing.JFrame {
             
             connectDAO DaoHist = new connectDAO();
             DaoHist.connectDB();
-            DaoHist.insereRegistroJFBD("HISTORICOS", historico_tela.alterarDadosSQLValues(), "ID_HIS='"+historico_tela.getID_historico()+"'");
+            DaoHist.alteraRegistroJFBD("HISTORICOS", historico_tela.alterarDadosSQLValues(), "ID_HIS='"+historico_tela.getID_historico()+"'");
         }catch(Exception erro){
             JOptionPane.showMessageDialog(this, erro.getMessage());
             
@@ -236,7 +236,7 @@ public class TelaHistoricos extends javax.swing.JFrame {
             System.out.println("retornou, não deu erro silencioso");
             
             this.HistoricoHistorico.setText(historico_tela.getHistorico());
-            this.IDHistorico.setText(historico_tela.getID_historico());
+            this.IDHistorico.setText(String.valueOf(historico_tela.getID_historico()));
             
             idTitle.setVisible(false);
             IDHistorico.setVisible(true);

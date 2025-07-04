@@ -5,6 +5,7 @@
 package View;
 
 import DAO.ContaCorrente;
+import DAO.Usuario;
 import DAO.connectDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class TelaUsuarios extends javax.swing.JFrame {
     }
     
     String operacaoAtivaGlobal = "Nenhum";
-    public TelaUsuaris(String operacaoAtiva){
+    public TelaUsuarios(String operacaoAtiva){
         initComponents();
         
         operacaoAtivaGlobal = operacaoAtiva;
@@ -258,7 +259,7 @@ public class TelaUsuarios extends javax.swing.JFrame {
 
                 connectDAO DaoUsuario = new connectDAO();
                 DaoUsuario.connectDB();
-                DaoUsuario.insereRegistroJFBD("USUARIOS", usuario_tela.alterarDadosSQLValues(), "ID='"+usuario_tela.getID_cliente()+"'");
+                DaoUsuario.alteraRegistroJFBD("USUARIOS", usuario_tela.alterarDadosSQLValues(), "ID='"+usuario_tela.getID_cliente()+"'");
             }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
                 
