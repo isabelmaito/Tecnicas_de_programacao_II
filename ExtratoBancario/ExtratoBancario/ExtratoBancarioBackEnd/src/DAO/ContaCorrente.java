@@ -158,6 +158,7 @@ public class ContaCorrente implements BaseDAO  {
         }
     };
     
+    @Override
     public String pesquisaSQLValues() {
         return "NUM_AGE, NUM_CC, ID_CLI, SALDO";
     }

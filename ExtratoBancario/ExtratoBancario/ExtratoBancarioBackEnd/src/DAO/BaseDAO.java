@@ -11,4 +11,5 @@ package DAO;
 public interface BaseDAO {
     
     public String getTabela();
+    public String pesquisaSQLValues();
 }

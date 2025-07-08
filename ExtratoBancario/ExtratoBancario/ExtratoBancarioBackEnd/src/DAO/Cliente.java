@@ -409,6 +409,7 @@ public class Cliente  implements BaseDAO {
         }
     };
     
+    @Override
     public String pesquisaSQLValues() {
         return "ID_CLI, NOME_CLI, ENDE_CLI, NUME_CLI, COMPL_CLI, BAIR_CLI, CIDA_CLI, UF_CLI, CEP_CLI, FONE_CLI, CPF_CLI, DATA_NASC, CNPJ_CLI";
     }

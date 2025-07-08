@@ -105,6 +105,7 @@ public class Historico implements BaseDAO  {
         }
     };
     
+    @Override
     public String pesquisaSQLValues() {
         return "ID_HIS, DES_HIS";
     }

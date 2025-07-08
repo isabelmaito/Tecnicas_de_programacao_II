@@ -161,6 +161,7 @@ public class Usuario implements BaseDAO  {
         }
     };
     
+    @Override
     public String pesquisaSQLValues() {
         return "ID, SENHA, NUM_AGE, NUM_CC";
     }

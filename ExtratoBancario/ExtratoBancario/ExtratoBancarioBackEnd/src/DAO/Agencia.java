@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author Alunos
  */
 public class Agencia implements BaseDAO {
-    private String tabela = "agencias";
+    private String tabela = "AGENCIAS";
     private String Num_Agencia;
     private String Nome;
     private String Endereco;
@@ -307,6 +307,8 @@ public class Agencia implements BaseDAO {
         }        
     };
     
+    
+    @Override
     public String pesquisaSQLValues() {
         return "NUM_AGE, NOME_AGE, ENDE_AGE, NUME_AGE, COMPL_AGE, BAIR_AGE, CIDA_AGE, UF_AGE, CEP_AGE, FONE_AGE";
     }

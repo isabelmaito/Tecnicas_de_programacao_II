@@ -27,6 +27,7 @@ public class TelaConsultarTabela extends javax.swing.JFrame {
         BaseDAO dadosTabela;
         switch (table) {
             case "AGENCIAS":
+                System.out.println("CONSULTA AGENCIA");
                 dadosTabela = new Agencia();
                 break;
             case "CLIENTES":
@@ -47,8 +48,8 @@ public class TelaConsultarTabela extends javax.swing.JFrame {
                 break;
         }
         
-        connectDAO conn = new connectDAO();
-        ResultSet dadosResultSet = conn.pesquisaTodoRegistroJFBD(dadosTabela.getTabela());
+        connectDAO con = new connectDAO();
+        ResultSet dadosResultSet = con.pesquisaTodoRegistroJFBD(dadosTabela.getTabela(), dadosTabela.pesquisaSQLValues());
         
         jTable1.setModel(DbUtils.resultSetToTableModel(dadosResultSet));
         jTable1.setVisible(true);

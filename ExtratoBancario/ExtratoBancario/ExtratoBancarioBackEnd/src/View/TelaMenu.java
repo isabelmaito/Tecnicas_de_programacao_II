@@ -370,7 +370,8 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_clienteExcluirTitleActionPerformed
 
     private void clienteConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteConsultarTitleActionPerformed
-        // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("CLIENTES");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_clienteConsultarTitleActionPerformed
 
     private void agenEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenEditarTitleActionPerformed
@@ -389,6 +390,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void agenConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenConsultarTitleActionPerformed
         // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("AGENCIAS");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_agenConsultarTitleActionPerformed
 
     private void contaEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaEditarTitleActionPerformed
@@ -408,6 +411,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void contaConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaConsultarTitleActionPerformed
         // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("CONTACORRENTE");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_contaConsultarTitleActionPerformed
 
     private void extratoEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoEditarTitleActionPerformed
@@ -426,6 +431,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void extratoConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoConsultarTitleActionPerformed
         // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("MOVIMENTACAO");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_extratoConsultarTitleActionPerformed
 
     private void histEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histEditarTitleActionPerformed
@@ -444,6 +451,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void histConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histConsultarTitleActionPerformed
         // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("HISTORICOS");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_histConsultarTitleActionPerformed
 
     private void usuarioEditarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEditarTitleActionPerformed
@@ -462,6 +471,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void usuarioConsultarTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioConsultarTitleActionPerformed
         // TODO add your handling code here:
+        TelaConsultarTabela telaConsulta = new TelaConsultarTabela("USUARIOS");
+        telaConsulta.setVisible(true);
     }//GEN-LAST:event_usuarioConsultarTitleActionPerformed
 
     /**

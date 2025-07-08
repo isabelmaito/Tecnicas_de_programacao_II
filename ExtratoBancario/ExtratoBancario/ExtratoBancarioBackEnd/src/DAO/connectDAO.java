@@ -155,29 +155,26 @@ public class connectDAO {
     }
     
     
-    public ResultSet pesquisaTodoRegistroJFBD(String tabela){
+    public ResultSet pesquisaTodoRegistroJFBD(String tabela, String campos){
             //Fazer a pesquisa e retornar a tbaela como resultado
             con = connectDB(); //Executa o método que conecta no BD e retorna
-            List<String> listaDados = new ArrayList<>();
             Statement stmt;
+            ResultSet dados;
             try {
                 stmt = con.createStatement();
                 //cria a string com a sentença SQL para inserir registro
-                String sql = "SELECT * FROM " +tabela;
+                String sql = "SELECT "+campos+" FROM dbo." +tabela;
                 System.out.println(sql);
                 try {
-                    ResultSet dados;
                     dados = stmt.executeQuery(sql);
-                    
                     return dados;
 
                 }catch (SQLException erro){
                     JOptionPane.showMessageDialog(null, "Erro de conexão, connectDAO - Mensagem => "+erro.getMessage());
                     JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Estado => "+erro.getSQLState());
                     JOptionPane.showMessageDialog(null, "\n Erro de conexão, connectDAO - Código => "+erro.getErrorCode());
-                } finally {
-                    con.close();
-                }
+                } 
+                con.close();
             }catch (SQLException ex){
               Logger.getLogger(connectDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
