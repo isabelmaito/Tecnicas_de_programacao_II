@@ -1,5 +1,7 @@
 package DAO;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
@@ -19,7 +21,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     private String Num_conta;
     private String Num_agencia;
     private String Documento;
-    private String Data_mov;
+    private Date Data_mov;
     private String Credito_debito;
     private Integer ID_hist;
     private String ComplHist;
@@ -29,7 +31,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     public ExtratoMovimentacao() {
     }
     
-    public ExtratoMovimentacao(String Num_conta, String Num_agencia, String Documento, String Data_mov, String Credito_debito, Integer ID_hist,String ComplHist, Integer Valor, Integer Saldo) {
+    public ExtratoMovimentacao(String Num_conta, String Num_agencia, String Documento, Date Data_mov, String Credito_debito, Integer ID_hist,String ComplHist, Integer Valor, Integer Saldo) {
         if (!ValidaExtratoMovimentacao(Num_conta, Num_agencia, Documento, Data_mov, Credito_debito, ID_hist, ComplHist, Valor, Saldo)){
             System.out.println("Erro");
         }
@@ -83,11 +85,11 @@ public class ExtratoMovimentacao implements BaseDAO  {
         }
     }
     
-    public String getData_mov() {
+    public Date getData_mov() {
         return Data_mov;
     }
 
-    public void setData_mov(String Data_mov) throws Exception{
+    public void setData_mov(Date Data_mov) throws Exception{
         if(ValidaDataMov(Data_mov)){
            this.Data_mov = Data_mov;
     }else{
@@ -127,7 +129,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     }
 
     public void setComplHist(String ComplHist)  throws Exception{
-        if (!ValidaComplHist(ComplHist)) {
+        if (ValidaComplHist(ComplHist)) {
             this.ComplHist = ComplHist;
     }else{
             JOptionPane.showMessageDialog(null, "Complemento Histórico não pode ser vazio.");
@@ -140,9 +142,9 @@ public class ExtratoMovimentacao implements BaseDAO  {
     }
 
     public void setValor(Integer Valor) throws Exception{
-        if (!ValidaValor(Valor)) {
+        if (ValidaValor(Valor)) {
             this.Valor = Valor;
-}else{
+        }else{
             JOptionPane.showMessageDialog(null, "Valor não pode ser vazio.");
             throw new Exception("Dados invalidos");
         }
@@ -153,7 +155,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     }
 
     public void setSaldo(Integer Saldo) throws Exception{
-        if (!ValidaSaldo(Saldo)) {
+        if (ValidaSaldo(Saldo)) {
             this.Saldo = Saldo;
 }else{
             JOptionPane.showMessageDialog(null, "Saldo não pode ser vazio.");
@@ -180,11 +182,8 @@ public class ExtratoMovimentacao implements BaseDAO  {
                !Documento.isEmpty();
     }
     
-    private boolean ValidaDataMov(String Data_mov){
-            return Data_mov != null &&
-               !Data_mov.isBlank() &&
-               !Data_mov.isEmpty() &&
-               Data_mov.length() == 8;
+    private boolean ValidaDataMov(Date Data_mov){
+            return Data_mov != null;
     }
     
     private boolean ValidaCredito_debito(String Credito_debito){
@@ -199,7 +198,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     }
 
     private boolean ValidaComplHist(String ComplHist){
-            return ComplHist == null;
+            return ComplHist != null;
     }
     
     private boolean ValidaValor(Integer Valor) {
@@ -207,10 +206,10 @@ public class ExtratoMovimentacao implements BaseDAO  {
     }
     
     private boolean ValidaSaldo(Integer Saldo) {
-            return Saldo == null;
+            return Saldo != null;
     }
     
-    private boolean ValidaExtratoMovimentacao(String Num_conta, String Num_agencia, String Documento, String Data_mov, String Credito_debito, Integer ID_hist, String ComplHist1, Integer Valor1, Integer Saldo1){
+    private boolean ValidaExtratoMovimentacao(String Num_conta, String Num_agencia, String Documento, Date Data_mov, String Credito_debito, Integer ID_hist, String ComplHist1, Integer Valor1, Integer Saldo1){
         return ValidaNumConta(Num_conta) &&
                ValidaNum_agencia(Num_agencia) &&
                ValidaDocumento(Documento) &&
@@ -229,26 +228,34 @@ public class ExtratoMovimentacao implements BaseDAO  {
     
     public String dadosSQLValues(){
         String dadosExtratos;
+        SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String dataMovimento = dateFormater.format(this.getData_mov());
         dadosExtratos = "'"
                 + this.getNum_agencia() + "','"                
                 + this.getNum_conta() + "','"
-                + this.getData_mov() + "','"                
+                + dataMovimento + "','"                
                 + this.getDocumento() + "','"
                 + this.getCredito_debito() + "','"
                 + this.getID_hist() + "','"
                 + this.getComplHist() + "', "
                 + this.getValor() + ", "
-                + this.getSaldo() + "'";
+                + this.getSaldo();
                         
         return dadosExtratos;
     }
     
     public String alterarDadosSQLValues(){
         String dadosExtratos;
+        
+        SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String dataMovimento = dateFormater.format(this.getData_mov());
+        
         dadosExtratos = "NUM_AGE='"
                 + this.getNum_agencia() + "',NUM_CC='"
                 + this.getNum_conta() + "',DATA_MOV='"
-                + this.getData_mov() + "',NUM_DOCTO='"
+                + dataMovimento + "',NUM_DOCTO='"
                 + this.getDocumento() + "',DEBITO_CREDITO='"
                 + this.getCredito_debito() + "',ID_HIS='"
                 + this.getID_hist() + "',COMPL_HIS='"
@@ -261,11 +268,13 @@ public class ExtratoMovimentacao implements BaseDAO  {
 
     public void importaSQLValues (List<String> dadosSQL){
         try{
+            SimpleDateFormat dateFormatFromDB = new SimpleDateFormat("yyyy-MM-dd");
+            
             this.setNum_agencia(dadosSQL.get(0));
             this.setNum_conta(dadosSQL.get(1));
             this.setID_hist(Integer.parseInt(dadosSQL.get(2)));
             this.setDocumento(dadosSQL.get(3));	
-            this.setData_mov(dadosSQL.get(4));	
+            this.setData_mov(dateFormatFromDB.parse(dadosSQL.get(4)));	
             this.setCredito_debito(dadosSQL.get(5));	
             this.setComplHist(dadosSQL.get(6));	
             this.setValor(Integer.parseInt(dadosSQL.get(7)));	

@@ -6,7 +6,9 @@ package View;
 
 import DAO.ExtratoMovimentacao;
 import DAO.connectDAO;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Date;
 import javax.swing.JOptionPane;
 /**
  *
@@ -341,7 +343,9 @@ public class TelaExtratos extends javax.swing.JFrame {
                 extrato_tela.setNum_conta(ContaExtrato.getText());
                 extrato_tela.setID_hist(Integer.valueOf(ID_histExtrato.getText()));
                 extrato_tela.setDocumento(DocExtrato.getText());
-                extrato_tela.setData_mov(DataExtrato.getText());
+                SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataNascClienteFormatada = dateFormater.parse(this.DataExtrato.getText());
+                extrato_tela.setData_mov(dataNascClienteFormatada);
                 extrato_tela.setCredito_debito(Credito_debitoExtrato.getSelectedItem().toString().substring(0,1));
                 extrato_tela.setComplHist(ComplHistExtrato.getText());
                 extrato_tela.setValor(Integer.valueOf(ValorExtrato.getText()));
@@ -367,7 +371,9 @@ public class TelaExtratos extends javax.swing.JFrame {
                 extrato_tela.setNum_conta(ContaExtrato.getText());
                 extrato_tela.setID_hist(Integer.valueOf(ID_histExtrato.getText()));
                 extrato_tela.setDocumento(DocExtrato.getText());
-                extrato_tela.setData_mov(DataExtrato.getText());
+                SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataNascClienteFormatada = dateFormater.parse(this.DataExtrato.getText());
+                extrato_tela.setData_mov(dataNascClienteFormatada);
                 extrato_tela.setCredito_debito(Credito_debitoExtrato.getSelectedItem().toString().substring(0,1));
                 extrato_tela.setComplHist(ComplHistExtrato.getText());
                 extrato_tela.setValor(Integer.valueOf(ValorExtrato.getText()));
@@ -406,7 +412,9 @@ public class TelaExtratos extends javax.swing.JFrame {
                this.ContaExtrato.setText(extrato_tela.getNum_conta());
                this.ID_histExtrato.setText(extrato_tela.getID_hist().toString());
                this.DocExtrato.setText(extrato_tela.getDocumento());
-               this.DataExtrato.setText(extrato_tela.getData_mov());
+               SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+               String dataMovimentoString = dateFormater.format(extrato_tela.getData_mov());
+               this.DataExtrato.setText(dataMovimentoString);
                this.Credito_debitoExtrato.setSelectedItem(extrato_tela.getCredito_debito());
                this.ComplHistExtrato.setText(extrato_tela.getComplHist());
                this.ValorExtrato.setText(String.valueOf(extrato_tela.getValor()));
