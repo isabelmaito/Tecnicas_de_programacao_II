@@ -481,6 +481,7 @@ public class TelaClientes extends javax.swing.JFrame {
                 
                 SimpleDateFormat dateFormaterToObject = new SimpleDateFormat("dd/MM/yyyy");
                 Date dataNascimentoFormatada = dateFormaterToObject.parse(Data_nascimentoCliente.getText());
+                System.out.println("Inserindo: " +dataNascimentoFormatada);
                 cliente_tela.setData_nascimento(dataNascimentoFormatada);
                 
                 cliente_tela.setCPF(CPFCliente.getText());

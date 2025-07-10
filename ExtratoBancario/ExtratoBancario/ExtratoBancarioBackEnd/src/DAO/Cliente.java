@@ -343,6 +343,9 @@ public class Cliente  implements BaseDAO {
 
     public String dadosSQLValues(){
         String dadosClientes;
+        SimpleDateFormat dateFormater = new SimpleDateFormat("dd/MM/yyyy");
+        
+        String dataNascimento = dateFormater.format(this.getData_nascimento());
         dadosClientes = "'"
                 + this.getID_cliente() + "','"
                 + this.getNome() + "','"
@@ -355,7 +358,7 @@ public class Cliente  implements BaseDAO {
                 + this.getCEP() + "','"
                 + this.getTelefone() + "','"
                 + this.getCPF() + "','"                    
-                + this.getData_nascimento() + "','"
+                + dataNascimento + "','"
                 + this.getCNPJ() + "'";   
         
         return dadosClientes;

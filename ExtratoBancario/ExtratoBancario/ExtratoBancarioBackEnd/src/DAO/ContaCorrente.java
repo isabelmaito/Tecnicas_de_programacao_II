@@ -19,13 +19,13 @@ public class ContaCorrente implements BaseDAO  {
     private String Num_conta;
     private String Num_agencia;
     private String ID_cliente;
-    private Float Saldo;
+    private String Saldo;
 
     public ContaCorrente() {
     }
 
       
-    public ContaCorrente(String Num_conta, String Num_agencia, String ID_cliente, Float Saldo) {
+    public ContaCorrente(String Num_conta, String Num_agencia, String ID_cliente, String Saldo) {
         if (!ValidaContaCorrente(Num_conta, Num_agencia, ID_cliente, Saldo)){
             System.out.println("Erro");
         }        
@@ -56,7 +56,7 @@ public class ContaCorrente implements BaseDAO  {
         if(ValidaNum_agencia(Num_agencia)){
            this.Num_agencia = Num_agencia;
     }else{
-            JOptionPane.showMessageDialog(null, "Agencia precisa ter 5 dígitos.");
+            JOptionPane.showMessageDialog(null, "Agencia não pode ser vazio.");
             throw new Exception("Dados invalidos");
         }
     }
@@ -74,17 +74,22 @@ public class ContaCorrente implements BaseDAO  {
         }
     }
     
-    public Float getSaldo() {
+    public String getSaldo() {
         return Saldo;
     }
 
-    public void setSaldo(Float Saldo) throws Exception{
+    public void setSaldo(String Saldo) throws Exception{
         if(ValidaSaldo(Saldo)){
           this.Saldo = Saldo;
     }else{
             JOptionPane.showMessageDialog(null, "Saldo não pode ser vazio.");
             throw new Exception("Dados invalidos");
         }
+    }
+    
+    @Override
+    public String getTabela(){
+        return this.tabela;
     }
     
     private boolean ValidaNumConta(String Num_conta){
@@ -96,8 +101,7 @@ public class ContaCorrente implements BaseDAO  {
     private boolean ValidaNum_agencia(String Num_agencia){
         return Num_agencia != null &&
                !Num_agencia.isBlank() &&
-               !Num_agencia.isEmpty() &&
-               Num_agencia.length() == 5;
+               !Num_agencia.isEmpty();
     }
     
     private boolean ValidaIDCliente(String ID_cliente){
@@ -106,23 +110,20 @@ public class ContaCorrente implements BaseDAO  {
                !ID_cliente.isEmpty();
     }
     
-    private boolean ValidaSaldo(Float Saldo){
-        return Saldo == null;
+    private boolean ValidaSaldo(String Saldo){
+        return Saldo != null &&
+               !Saldo.isBlank() &&
+               !Saldo.isEmpty();
     }
     
-    private boolean ValidaContaCorrente(String Num_conta, String Num_agencia, String ID_cliente, Float Saldo){
+    private boolean ValidaContaCorrente(String Num_conta, String Num_agencia, String ID_cliente, String Saldo){
         return ValidaNumConta(Num_conta) &&
                ValidaNum_agencia(Num_agencia) &&
                ValidaIDCliente(ID_cliente) &&
-               ValidaSaldo (Saldo);
+               ValidaSaldo(Saldo);
     }
     
-    
-    @Override
-    public String getTabela(){
-        return this.tabela;
-    }
-    
+        
     public String dadosSQLValues(){
         String dadosContas;
         dadosContas = "'"
@@ -150,7 +151,7 @@ public class ContaCorrente implements BaseDAO  {
             this.setID_cliente(dadosSQL.get(0));
             this.setNum_agencia(dadosSQL.get(1));
             this.setNum_conta(dadosSQL.get(2));
-            this.setSaldo(Float.valueOf(dadosSQL.get(3)));
+            this.setSaldo(dadosSQL.get(3));
             
         } catch (Exception ex) {
             

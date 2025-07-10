@@ -232,7 +232,7 @@ public class TelaContas extends javax.swing.JFrame {
             conta_tela.setNum_agencia(AgenciaConta.getText());
             conta_tela.setNum_conta(ContaConta.getText());
             conta_tela.setID_cliente(IDConta.getText());
-            conta_tela.setSaldo(Float.valueOf(SaldoConta.getText()));
+            conta_tela.setSaldo(SaldoConta.getText());
 
             connectDAO DaoConta = new connectDAO();
                 DaoConta.connectDB();
@@ -254,7 +254,7 @@ public class TelaContas extends javax.swing.JFrame {
             conta_tela.setNum_agencia(AgenciaConta.getText());
             conta_tela.setNum_conta(ContaConta.getText());
             conta_tela.setID_cliente(IDConta.getText());
-            conta_tela.setSaldo(Float.valueOf(SaldoConta.getText()));
+            conta_tela.setSaldo(SaldoConta.getText());
 
             connectDAO DaoConta = new connectDAO();
                 DaoConta.connectDB();
@@ -288,7 +288,7 @@ public class TelaContas extends javax.swing.JFrame {
             this.AgenciaConta.setText(conta_tela.getNum_agencia());
             this.ContaConta.setText(conta_tela.getNum_conta());
             this.IDConta.setText(conta_tela.getID_cliente());
-            this.SaldoConta.setText(conta_tela.getSaldo().toString());
+            this.SaldoConta.setText(conta_tela.getSaldo());
             
             idTitle.setVisible(false); //Label Id conta
             IDConta.setVisible(false); //Field Id conta

@@ -67,7 +67,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
         if(ValidaNum_agencia(Num_agencia)){
            this.Num_agencia = Num_agencia;
     }else{
-            JOptionPane.showMessageDialog(null, "Agencia precisa ter 5 dígitos.");
+            JOptionPane.showMessageDialog(null, "Agencia não pode ser vazio.");
             throw new Exception("Dados invalidos");
         }
     }
@@ -172,8 +172,7 @@ public class ExtratoMovimentacao implements BaseDAO  {
     private boolean ValidaNum_agencia(String Num_agencia){
         return Num_agencia != null &&
                !Num_agencia.isBlank() &&
-               !Num_agencia.isEmpty() &&
-               Num_agencia.length() == 5;
+               !Num_agencia.isEmpty();
     }
 
     private boolean ValidaDocumento(String Documento){
