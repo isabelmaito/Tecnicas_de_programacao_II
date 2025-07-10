@@ -30,7 +30,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="idTitle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="IDHistorico" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="IDHistorico" min="-2" pref="230" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="ButtonCadastrar" min="-2" max="-2" attributes="0"/>
