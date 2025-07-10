@@ -1,1 +1,12 @@
 /ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/dist/
+# Ignorar arquivos de build e IDE
+target/
+**/nbproject/private/
+*.log
+*.jar
+*.war
+*.zip
+*.rar
+*.ear
+*.dat
+*.data
