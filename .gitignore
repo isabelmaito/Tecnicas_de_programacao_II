@@ -10,3 +10,5 @@ target/
 *.ear
 *.dat
 *.data
+ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/nbproject/private/private.properties
+ExtratoBancario/ExtratoBancario/ExtratoBancarioBackEnd/nbproject/private/private.xml
