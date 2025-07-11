@@ -36,7 +36,7 @@ public class TelaConsultarTabela extends javax.swing.JFrame {
             case "CONTACORRENTE":
                 dadosTabela = new ContaCorrente();
                 break;
-            case "HISTORICO":
+            case "HISTORICOS":
                 dadosTabela = new Historico();
                 break;
             case "USUARIOS":

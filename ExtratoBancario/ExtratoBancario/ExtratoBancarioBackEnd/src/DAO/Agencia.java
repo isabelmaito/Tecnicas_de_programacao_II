@@ -56,7 +56,7 @@ public class Agencia implements BaseDAO {
         if(ValidaNumAgencia(Num_Agencia)){
           this.Num_Agencia = Num_Agencia;    
         }else{
-            JOptionPane.showMessageDialog(null, "Numero Agencia precisa ter 5 digitos.");
+            JOptionPane.showMessageDialog(null, "Numero Agencia não pode ser vazio.");
             throw new Exception("Dados invalidos");
         }        
     }
@@ -181,8 +181,7 @@ public class Agencia implements BaseDAO {
     private boolean ValidaNumAgencia(String Num_Agencia){
         return Num_Agencia == null ||
                !Num_Agencia.isBlank() ||
-               !Num_Agencia.isEmpty() ||
-               Num_Agencia.length() == 5;
+               !Num_Agencia.isEmpty();
     }
     
     private boolean ValidaNome(String Nome){

@@ -135,7 +135,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="nomeTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="Nome Ag&#xea;ncia"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="NomeAgencia">
@@ -251,7 +251,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="agenciaTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ag&#xea;ncia"/>
+        <Property name="text" type="java.lang.String" value="N&#xfa;mero Ag&#xea;ncia"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="AgenciaAgencia">

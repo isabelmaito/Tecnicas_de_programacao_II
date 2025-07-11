@@ -31,39 +31,17 @@ public class TelaAgencias extends javax.swing.JFrame {
         String operacao = "Incluir";
         
         if(operacaoAtiva.equals(operacao)){
-            agenciaTitle.setVisible(true);
-            AgenciaAgencia.setVisible(true);
-            NomeAgencia.setVisible(true);
-            EndAgencia.setVisible(true);
-            NumAgencia.setVisible(true);
-            CompAgencia.setVisible(true);
-            BairroAgencia.setVisible(true);
-            CEPAgencia.setVisible(true);
-            CidadeAgencia.setVisible(true);
-            UFAgencia.setVisible(true);
-            TelefoneAgencia.setVisible(true);
-            
-            ButtonCadastrar.setVisible(true);
-            ButtonDetalhes.setVisible(true);                    
+            this.setAllVisible(true);                    
         }
         
         operacao = "Alterar";
         
         if(operacaoAtiva.equals(operacao)){
+            this.setAllVisible(false);
+            
             agenciaTitle.setVisible(true);
             AgenciaAgencia.setVisible(true);
-            NomeAgencia.setVisible(false);
-            EndAgencia.setVisible(false);
-            NumAgencia.setVisible(false);
-            CompAgencia.setVisible(false);
-            BairroAgencia.setVisible(false);
-            CEPAgencia.setVisible(false);
-            CidadeAgencia.setVisible(false);
-            UFAgencia.setVisible(false);
-            TelefoneAgencia.setVisible(false);
-            
-            ButtonCadastrar.setVisible(true);
-            ButtonDetalhes.setVisible(false);   
+            ButtonCadastrar.setVisible(true);  
             
             ButtonCadastrar.setText("Pesquisar");
         }       
@@ -71,24 +49,41 @@ public class TelaAgencias extends javax.swing.JFrame {
         operacao = "Excluir";
         
         if(operacaoAtiva.equals(operacao)){
+            this.setAllVisible(false);  
+            
             agenciaTitle.setVisible(true);
             AgenciaAgencia.setVisible(true);
-            NomeAgencia.setVisible(false);
-            EndAgencia.setVisible(false);
-            NumAgencia.setVisible(false);
-            CompAgencia.setVisible(false);
-            BairroAgencia.setVisible(false);
-            CEPAgencia.setVisible(false);
-            CidadeAgencia.setVisible(false);
-            UFAgencia.setVisible(false);
-            TelefoneAgencia.setVisible(false);  
-            
-            ButtonCadastrar.setVisible(false);
-            ButtonDetalhes.setVisible(false);   
+            ButtonCadastrar.setVisible(true);
             
             ButtonCadastrar.setText("Excluir");
         }
         
+    }
+    
+    private void setAllVisible(boolean isVisible){
+        agenciaTitle.setVisible(isVisible);
+        AgenciaAgencia.setVisible(isVisible);
+        NomeAgencia.setVisible(isVisible);
+        EndAgencia.setVisible(isVisible);
+        NumAgencia.setVisible(isVisible);
+        CompAgencia.setVisible(isVisible);
+        BairroAgencia.setVisible(isVisible);
+        CEPAgencia.setVisible(isVisible);
+        CidadeAgencia.setVisible(isVisible);
+        UFAgencia.setVisible(isVisible);
+        TelefoneAgencia.setVisible(isVisible);
+        endTitle.setVisible(isVisible);
+        nomeTitle.setVisible(isVisible);
+        numTitle.setVisible(isVisible);
+        compTitle.setVisible(isVisible);
+        bairroTitle.setVisible(isVisible);
+        cepTitle.setVisible(isVisible);
+        ufTitle.setVisible(isVisible);
+        cidadeTitle.setVisible(isVisible);
+        telTitle.setVisible(isVisible);            
+
+        ButtonCadastrar.setVisible(isVisible);
+        ButtonDetalhes.setVisible(isVisible); 
     }
     
     
@@ -129,7 +124,7 @@ public class TelaAgencias extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nomeTitle.setText("Nome");
+        nomeTitle.setText("Nome Agência");
 
         NomeAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,7 +189,7 @@ public class TelaAgencias extends javax.swing.JFrame {
             }
         });
 
-        agenciaTitle.setText("Agência");
+        agenciaTitle.setText("Número Agência");
 
         AgenciaAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,16 +449,7 @@ public class TelaAgencias extends javax.swing.JFrame {
            this.UFAgencia.setSelectedItem(agencia_tela.getUF());
            this.TelefoneAgencia.setText(agencia_tela.getTelefone());
            
-           AgenciaAgencia.setVisible(false);
-           NomeAgencia.setVisible(false);
-           EndAgencia.setVisible(true);
-           NumAgencia.setVisible(true);
-           CompAgencia.setVisible(true);
-           BairroAgencia.setVisible(true);
-           CEPAgencia.setVisible(true);
-           CidadeAgencia.setVisible(true);
-           UFAgencia.setVisible(true);
-           TelefoneAgencia.setVisible(true);
+           this.setAllVisible(true);
            
            if(operacaoAtivaGlobal.equals(operacaoExcluir)){
                ButtonCadastrar.setText("Excluir");
